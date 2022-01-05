@@ -19,9 +19,9 @@
   <div class="container">
       <div class="inputs">
         <label>Name</label>
-        <input type="text" name="name">
+        <input type="text" name="name" id="name">
         <label>Age</label>
-        <input type="text" name="age">
+        <input type="text" name="age" id="age">
       </div>
   </div>
 
@@ -37,7 +37,7 @@
         <li>Custom Folder 3</li>
       </ul>
       <ul class="group">
-        >New Folder</li>
+      <li>NewFolder</li>
       </ul>
   </div>
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -64,12 +64,25 @@
     }
     window.addEventListener('load', (event) => {
       console.log("Window load in body");
-
-    })
+    });
 
     window.onload = (event) => {
       console.log('page is fully loaded');
     };
+       /* ----- Befor Unload Ex ----- */ 
+    const beforeUnloadListener = (event) => {
+      event.preventDefault();
+      return event.returnValue = "Are you leave" ;
+    };
+    const nameInput = document.getElementById("name");
+    nameInput.addEventListener("input", (event) => {
+      if (event.target.value !== "") {
+        addEventListener("beforeunload", beforeUnloadListener, {capture: true});
+      } else {
+        removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
+      }
+    });
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
