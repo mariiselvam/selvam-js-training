@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tables</title>
+  
+  <style>
+
+    table{
+      width: 50%;
+      font-family: sans-serif;
+    }
+    
+    table, th, td{
+      padding: 10px;
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="JS WITH TABLES">
+    <table id="mytable">
+      <tr>
+        <th>Sno</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+      <tr>
+        <td>1.</td>
+        <td>Jack</td>
+        <td>42</td>
+        <td>USA</td>
+      </tr>
+      <tr id="row3">
+        <td>2.</td>
+        <td>Delity</td>
+        <td>45</td>
+        <td>UK</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td>DREWS</td>
+        <td>49</td>
+        <td>London</td>
+      </tr>
+    </table>
+  </div>
+  
+  
+  <p class="border"></p>
+  <table id="table2">
+    <thead>
+      <tr>1</tr>
+      <tr>2</tr>
+      <tr>3</tr>
+    </thead>
+
+  </table>
+  <p id="view"></p>
+  <p id="rowview"></p>
+  <p id="createtable"></p>
+  <label>SNO<input type="text" id="sno"> </label><br>
+  <label>NAME<input type="text" name="name" id="name"></label><br>
+  <label>AGE<input type="text" name="age" id="age"></label><br>
+  <lael>CITY<input type="text" name="city" id="city"></lael><br>
+  
+  <button onclick="delfun()">Click To Delete </button>
+  <button onclick="countrow()">Row Count</button>
+  <button onclick="viewrow()">Row View</button>
+  <button onclick="addrow()">Add Row</button>
+  <button onclick="addtable()">Add Table</button>
+  <button onclick="tabdata()">Add Data In Table</button>
+  <script>
+    // Delete One Row In Table
+    function delfun(){
+      var x = document.getElementById("mytable");
+      x.deleteRow(1);
+    }
+
+  // Row Count
+    function countrow(){
+      var x = document.getElementById("mytable").rows.length;
+      document.getElementById("view").innerHTML = "No of Rows" + x;
+      alert(document.getElementById("mytable").rows.item(1).innerHTML);
+    }
+    // View Row Element
+    function viewrow(){
+      var x = document.getElementById("mytable").rows.namedItem("row3").innerHTML;
+      document.getElementById("rowview").innerHTML = x;
+    }
+
+    // Row Add
+    function addrow(){
+      var table = document.getElementById("mytable").getElementsByTagName('tbody')[0];
+      var id = document.getElementById("sno").value;
+      var text = document.getElementById("name").value;
+      var age = document.getElementById("age").value;
+      var city = document.getElementById("city").value;
+      
+      var row = table.insertRow();
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      cell1.innerHTML = id;
+      cell2.innerHTML = text;
+      cell3.innerHTML = age;
+      cell4.innerHTML = city;
+    }
+
+    // Table add
+    function addtable(){
+
+      input_body = document.getElementsByTagName("body")[0];
+
+      var loc_table = document.createElement("table");
+      var table_body = document.createElement("tbody");
+      
+      for(row = 0; row < 3; row++)
+      {
+        current_row = document.createElement("tr");
+        for(col = 0; col < 3; col++)
+        {
+          current_cell = document.createElement("td");
+          current_text = document.createTextNode("cell is row" + row + "column" + col );
+          current_cell.appendChild(current_text);
+          current_row.appendChild(current_cell);
+        }
+        table_body.appendChild(current_row);
+      }
+      loc_table.appendChild(table_body);
+      input_body.appendChild(loc_table);
+      loc_table.setAttribute("border","2");
+    }
+
+    // Add data in Table 
+    function tabdata(){
+
+    }
+  </script>
+</body>
+
+</html>
