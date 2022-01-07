@@ -7,6 +7,103 @@
   <title>HTML Attributes</title>
 </head>
 <body>
-  
+  <div class="container">
+    <p>Form Attributes</p>
+    <!-- Form Attributes --> 
+    <form autocomplete="off" formmethod="POST">
+      <label>Name
+      <input type="text" name="text" autofocus /></label><br>
+      <label>Age
+      <input type="text" name="age" required /></label><br>
+      <label>Email
+      <input type="email" /></label><br>
+      <input type="file" accept=".doc,.docx"><br>
+      <label>Product Number:
+        <input pattern="[0-9][A-Z]{3}" name="product" type="text" title="Single digit followed by three uppercase letters."/>
+      </label><br>
+      <label>Select One
+        <datalist id="fruits">
+          <select name="fruits">
+            <option value="Blackberry">Blackberry</option>
+            <option value="Blackcurrent">Blackcurrent</option>
+            <option value="Straberry">Straberry</option>
+          </select>If Notify
+        </datalist>
+        <input type="text" name="fruit" list="fruits">
+    </label><br>
+    <input type="submit" value="Submit!!!" formvalidate formenctype="application/x-www-form-urlencoded"><br>
+    <fieldset>
+      <legend>Choose One</legend>
+      <input type="radio" value="Crompton" name="fan">Crompton
+      <input type="radio" value="Usha" name="fan" checked>Usha
+      <input type="radio" value="Panasonic" name="fan">Panasonic
+    </fieldset>
+    </form>
+    
+    <p class="border"></p>
+
+    <!---- Attributes  -->
+    <p>Attributes</p>
+    <form>
+
+      <input type="button" value="clickme"><br>
+      <input type="checkbox" value="check" name="true" checked>Ture
+      <input type="checkbox" value="check" name="false">False<br>
+      <label>Choose Color
+        <input type="color" name="color">
+      </label><br>
+      <label>Date
+        <input type="date">
+      </label><br>
+      <label>Datetime local
+        <input type="datetime-local">
+      </label><br>
+      <label>Email
+        <input type="email" pattern=".+@gmail\.com" required>
+      </label><br>
+      <label>Month
+        <input type="month">
+      </label><br>
+      <label>Number
+        <input type="number" min="4" max="6">
+      </label><br>
+      <label>Password
+        <input type="Password">
+      </label><br>
+      <label>Checkbox
+        <input type="radio" name="check" value="true">Ture
+        <input type="radio" name="check" value="false">False
+      </label><br>
+      <label>Range
+        <input type="range" min="0" max="10">
+      </label><br>
+      <label>Reset
+        <input type="text" name="text">
+        <input type="reset" value="reset">
+      </label><br>
+      <label>Search
+        <input type="search">
+        <button>Submit</button>
+      </label><br>
+      <label>Telephone
+        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+        <small>Format: 123-123-1234</small>
+      </label><br>
+      <label>Time
+        <input type="time">
+      </label><br>
+      <label>
+        <input type="url" placeholder="https://example.com">
+      </label><br>
+      <label>
+        <input type="week">
+      </label><br>
+
+      
+     
+    </form>
+  </div>
+  <script>
+  </script>
 </body>
 </html>
