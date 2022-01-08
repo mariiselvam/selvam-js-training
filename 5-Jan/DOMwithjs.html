@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="header-id">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+  <script>
+    // Heading Default load
+    // Append Child & Create Text Node
+      window.onload = function() {
+        head_for = document.createElement('h1');
+        head_for1 =document.createElement('h2');
+        head_text2 = document.createTextNode('Heading2')
+        head_text = document.createTextNode('Heading1');
+        head_for.appendChild(head_text);
+        document.body.appendChild(head_for);
+        head_for1.appendChild(head_text2);
+        document.body.appendChild(head_for1);
+      }
+  </script>
+</head>
+<body>
+
+  <!--- On Click -->
+  <h3 id="head3">Colour Change</h3>
+  <!-- Para change -->
+  <p id="changepara"></p>
+  <img id="image" height="100" width="120">
+
+  <!-- SetAttribute -->
+  <button id="disable">Hello World!!!</button><br>
+
+  <!--- Remove Child --->
+  <ul id="ulist"><li>Dell</li><li>lenovo</li><li>Mac</li></ul>
+  <button id="colchan" onclick="colchange()">ColChange</button><br>
+  <button onclick="uldelete()">Delete</button><br><br>
+
+  <div>
+    <label>Original</label>
+    <select id="original" multiple>
+      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+    </select>
+  
+    <button id="to-left">To Left  &gt;</button>
+    <button id="to-right">&lt; To Right</button>
+  
+    <label>Copy</label>
+    <select id="copy">
+    </select>
+  </div>
+
+  <!--- Anchors <a> --->  
+    <label><i>Anchor</i></label><br>
+    <a name="HTML">HTML</a><br>
+    <a name="CSS">CSS</a><br>
+    <a name="JS">JS</a>
+    <p id="a-tag"></p>
+    
+    <!-- BaseURI -->
+    <p id="geturl"></p>
+
+    <!--- Document URI---> 
+    <p id="docuri">
+      URL:<br>
+      <span id="documenturi">URL</span>
+    </p>
+
+    <!--- Embeed --->
+    <embed src="helloworld.swf">
+    <embed src="helloworld.swf">
+
+    <!--- Document Form --->
+    <form name="signform">
+      <labe>Name
+        <input type="text" name="name" id="name">
+      </labe>
+      <labe>Password
+        <input type="password" name="password">
+      </labe>
+      <labe>Email
+        <input type="email" name="email">
+      </labe>
+        <button>Click</button>
+    </form>
+
+
+
+
+  <script>
+
+    // Change Para Name and color
+    var x = document.getElementById("changepara");
+    x.innerHTML = "Paragraph Value Set";
+    x.style.backgroundColor = 'cornsilk'; 
+    
+    // Set Image 
+    document.getElementById('image').src = "/asset/image/landscape.jpg";
+
+    // Set Attribute value
+    var but = document.getElementById('disable');
+    but.setAttribute("name","checkbutton");
+    but.setAttribute("id","chebutton");
+    but.setAttribute("disabled", "");
+
+    // Remove Child
+    function uldelete(){
+    var ulistt = document.getElementById('ulist');
+    ulistt.removeChild(ulistt.childNodes[0]);
+    }
+
+    // Change Children
+    const originalselect = document.getElementById('original');
+    const copyselect = document.getElementById('copy');
+    const leftbtn = document.getElementById('to-left');
+    const rightbtn = document.getElementById('to-right');
+
+    leftbtn.addEventListener('click', () =>{
+      const left_right = document.querySelectorAll('#original option:checked');
+      const right = document.querySelectorAll('#copy option');
+      copyselect.replaceChildren(...left_right , ...right);
+    });
+
+    rightbtn.addEventListener('click' , () =>{
+      const right_left = document.querySelectorAll('#copy option:checked');
+      const left = document.querySelectorAll('#original option');
+      originalselect.replaceChildren(...right_left , ...left);
+    });
+
+    // Colour Change
+    document.getElementById('colchan').onclick = function() {
+      document.write('<h6>ONCLICK</h6>');
+    }
+
+    //<a> Count Anghor 
+      document.getElementById('a-tag').innerHTML = "Number of Anchor is"+ document.anchors.length;
+
+      // URI 
+      var url = document.baseURI;
+      document.getElementById('geturl').innerHTML = url;
+
+      // Document Type 
+      doctypeObj = document.doctype;
+      doctElement = document.documentElement;
+      docDomain = document.domain;
+      emblength = document.embeds.length;
+      formlen = document.forms.length;
+      var formsign = document.forms.signform;
+      formsign.elements.email.placeholder = "Email";
+      formsign.elements.password.placeholder = "password";
+           
+
+      // Document type & Element name & Document URI & Document Domain
+      console.log('Document Type' , doctypeObj);
+      console.log('Elements Name' , doctElement);
+      console.log('Domain Name' , docDomain);
+      document.getElementById('documenturi').textContent = document.documentURI;
+      console.log('Embeeds Length' , emblength);
+      console.log('Form length' , formlen);
+      
+      // Head id
+      var headid = document.head;
+      console.log(headid.id);
+      if(headid == document.querySelector('head')){
+        console.log("return true")
+      }
+
+       
+      
+
+    
+    
+  </script>
+</body>
+</html>
