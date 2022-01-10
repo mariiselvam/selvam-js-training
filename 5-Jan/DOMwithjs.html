@@ -9,14 +9,14 @@
     // Heading Default load
     // Append Child & Create Text Node
       window.onload = function() {
-        head_for = document.createElement('h1');
-        head_for1 =document.createElement('h2');
+        head1 = document.createElement('h1');
+        head_text1 = document.createTextNode('Heading1');
+        head1.appendChild(head_text1);
+        document.body.appendChild(head1);
+        head2 =document.createElement('h2');
         head_text2 = document.createTextNode('Heading2')
-        head_text = document.createTextNode('Heading1');
-        head_for.appendChild(head_text);
-        document.body.appendChild(head_for);
-        head_for1.appendChild(head_text2);
-        document.body.appendChild(head_for1);
+        head2.appendChild(head_text2);
+        document.body.appendChild(head2);
       }
   </script>
 </head>
@@ -164,12 +164,6 @@
       if(headid == document.querySelector('head')){
         console.log("return true")
       }
-
-       
-      
-
-    
-    
   </script>
 </body>
 </html>
