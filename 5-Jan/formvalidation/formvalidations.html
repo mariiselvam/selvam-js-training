@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms & Valitations</title>
+  <style>
+    form{
+      max-width: 320px;
+      font: 1em sans-serif;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="form" name="login" onsubmit="return validation()" action="/" autocomplete="off">
+      <label>FirstName:
+        <input type="text" name="fname" id="fname">
+      </label><br>
+      <label>SurName:
+        <input type="text" name="sname" id="sname">
+      </label><br>
+      <label>Password:
+        <input type="password" name="password" id="password" autocomplete="on">
+      </label><br>
+      <label>ConformPassword:
+        <input type="password" name="password2" id="password2" autocomplete="on">
+      </label><br>
+      <label>Email:
+        <input type="email" name="email" id="emails">
+      </label><br>
+      <label>Ph:
+        <input type="tel" name="phone" id="phones">
+      </label><span id="noonly" style="color: red;"></span><br>
+      <label>
+        <fieldset>
+          <legend aria-label="required">Do you have liecense *</legend>
+          <input type="radio" name="like" value="yes" >Yes
+          <input type="radio" name="like" value="no">No
+        </fieldset>
+      </label>
+      
+      <label>Select One:
+        <select name="select" id="select">
+          <option value="selectcourse">----- SelectOne -----</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="Js">Js</option>
+        </select>
+      </label><br>
+      <label>Comments:
+        <textarea name="comment"></textarea>
+      </label><br>
+      <button >Click</button>
+    </form>
+  </div>
+  
+  <script>
+
+    function validation(){
+      var fname = document.forms['login']['fname'].value;
+      var sname = document.forms['login']['sname'].value;
+      var pass = document.forms['login']['password'].value;
+      var cpass = document.forms['login']['password2'].value;
+      var mail = document.forms['login']['email'].value;
+      var phon = document.forms['login']['phone'].value;
+      var liece = document.forms['login']['like'].value;
+      var cour = document.forms['login']['select'].value;
+      var tarea = document.forms['login']['comment'].value;
+
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
+      if(fname == ""){
+        alert ("Fill the firstname");
+        document.getElementById('fname').focus();
+        return false;
+      }
+      else if(fname && sname == ''){
+        alert ("Fill the Sname");
+        document.getElementById('sname').focus();
+        return false;
+      }
+      if(cour == "selectcourse"){
+        alert("Select Course");
+        document.getElementById('select').focus();
+        return false;
+      }
+
+      if(phon==""){
+        alert("Type Phone no");
+        return false;
+      }
+      else if(isNaN(phon)){
+        document.getElementById('noonly').innerHTML = "Numbers Only";
+        return false;
+      }
+
+      if(!mail.match(mailformat)){
+        alert("TypeEmail");
+        document.getElementById('emails').focus();
+        return false;
+      }
+
+      if(liece == ""){
+        alert("Select Liecense");
+        return false;
+      }
+
+      if(pass =='' && cpass == ''){
+        alert("Type Password");
+        document.getElementById('password').focus();
+      }else if(pass == cpass){
+        return true;
+      }else{
+        alert("Password Must Be same");
+        document.getElementById('password2').focus();
+        return false;
+      }
+        
+      
+    }
+  </script> 
+</body>
+
+
+</html>
