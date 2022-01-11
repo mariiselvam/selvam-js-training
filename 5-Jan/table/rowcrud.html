@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROW EDIT</title>
+  <style>
+    table {
+      width: 50%;
+      border: 1px solid black;
+      font: 16px "Open Sans", Helvetica, Arial, sans-serif;
+    }
+    thead > tr {
+      background-color: rgb(228, 240, 245);
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding:4px 6px;
+    }
+    table, th, tr{
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+  <h1>Form</h1>
+  <table>
+    <tr>
+      <td>
+        <form autocomplete="off" onsubmit="event.preventDefault(); onformsubmit()">
+          <div>
+            <label>Name:
+              <input type="text" name="firstname" id="names">
+            </label>
+          </div>
+          <div>
+            <label>EMP Code:
+              <input type="text" name="empcode" id="codes">
+            </label>
+          </div>
+          <div>
+            <label>Salary:
+              <input type="text" name="salary" id="salarys">
+            </label>
+          </div>
+          <div>
+            <label>City:
+              <input type="text" name="city" id="citys">
+            </label>
+          </div>
+          <div>
+            <input type="submit" value="submit">
+          </div>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <h1>Row Edit</h1>
+  <table id="emplist">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>EMP Code</th>
+        <th>Salary</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  <script>
+
+    var selecetrow = null;
+
+    function onformsubmit(){
+     var datas = readdata();
+     console.log(datas);
+     if(selecetrow == null)
+      storedata(datas);
+    else
+       updates(datas);
+    reset();
+    }
+
+    function readdata(){
+      var formdata = {} ;
+      formdata['firstnamess'] = document.getElementById('names').value;
+      formdata['empcodess'] = document.getElementById('codes').value;
+      formdata['salaryss'] =document.getElementById('salarys').value;
+      formdata['cityss'] = document.getElementById('citys').value;
+      return formdata;
+    }
+
+    function storedata(data){
+      var table = document.getElementById('emplist').getElementsByTagName('tbody')[0];
+      var newrow = table.insertRow();
+      cell1 = newrow.insertCell(0);
+      cell2 = newrow.insertCell(1);
+      cell3 = newrow.insertCell(2);
+      cell4 = newrow.insertCell(3);
+      cell5 = newrow.insertCell(4);
+      
+      cell1.innerHTML = data.firstnamess;
+      cell2.innerHTML = data.empcodess;
+      cell3.innerHTML = data.salaryss;
+      cell4.innerHTML = data.cityss;
+      cell5.innerHTML = '<button onclick="edit(this)">Edit</button><button onclick="deletes(this)">delete</button>';
+    }
+
+    function reset(){
+      document.getElementById('names').value = "";
+      document.getElementById('codes').value = "";
+      document.getElementById('salarys').value= "";
+      document.getElementById('citys').value = "";
+      selecetrow = null;
+    }
+
+    function edit(editdata){
+      selecetrow = editdata.parentElement.parentElement;
+      console.log(selecetrow);
+      document.getElementById('names').value = selecetrow.cells[0].innerHTML;
+      document.getElementById('codes').value = selecetrow.cells[1].innerHTML;
+      document.getElementById('salarys').value = selecetrow.cells[2].innerHTML;
+      document.getElementById('citys').value = selecetrow.cells[3].innerHTML;
+    }
+
+    function updates(datas){
+      selecetrow.cells[0].innerHTML = datas.firstnamess;
+      selecetrow.cells[1].innerHTML = datas.empcodess;
+      selecetrow.cells[2].innerHTML = datas.salaryss;
+      selecetrow.cells[3].innerHTML = datas.cityss;
+    }
+
+    function deletes(td){
+      if(confirm("Are you Sure delete"))
+      row = td.parentElement.parentElement;
+      document.getElementById('emplist').deleteRow(row.rowIndex);
+      console.log(row.rowIndex);
+      reset();
+
+    }
+
+
+
+  </script>
+</body>
+</html>
