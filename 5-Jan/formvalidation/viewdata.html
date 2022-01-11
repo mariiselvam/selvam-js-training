@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data View</title>
+</head>
+<body>
+  <h1>works</h1>
+  <h2>
+    Name: <span id="result-name"></span><br>
+    Sname : <span id="result-sname"></span><br>
+    Password : <span id="result-password"></span><br>
+    Email: <span id="result-email"></span><br>
+    No : <span id="result-pno"></span><br>
+    DOB : <span id="result-dob"></span><br>
+    Liecense : <span id="result-chk"></span><br>
+    Course : <span id="result-crs"></span><br>
+    Comments : <span id="result-cmt"></span><br>
+  </h2>
+<script>
+  window.addEventListener('load' , () =>{
+
+    const param = (new URL(document.location)).searchParams;
+    const fname = param.get('fname');
+    const sname = param.get('sname');
+    const passw = param.get('password');
+    const mail = param.get('email');
+    const nos = param.get('phone');
+    const liecen = param.get('liecense');
+    const selec = param.get('select');
+    const commen = param.get('comment');
+    const DOB = param.get('date');
+
+    document.getElementById('result-name').innerHTML = fname;
+    document.getElementById('result-sname').innerHTML = sname;
+    document.getElementById('result-password').innerHTML = passw;
+    document.getElementById('result-email').innerHTML = mail;
+    document.getElementById('result-pno').innerHTML = nos;
+    document.getElementById('result-chk').innerHTML = liecen;
+    document.getElementById('result-crs').innerHTML = selec;
+    document.getElementById('result-cmt').innerHTML = commen;
+    document.getElementById('result-dob').innerHTML = DOB;
+  })
+  
+</script> 
+</body>
+</html>
