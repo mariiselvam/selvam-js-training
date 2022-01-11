@@ -15,7 +15,7 @@
 </head>
 <body>
   <div class="container">
-    <form id="form" name="login" onsubmit="return validation()" action="/" autocomplete="off">
+    <form id="form" name="login" onsubmit="return validation()" action="viewdata.html" autocomplete="off">
       <label>FirstName:
         <input type="text" name="fname" id="fname">
       </label><br>
@@ -34,11 +34,14 @@
       <label>Ph:
         <input type="tel" name="phone" id="phones">
       </label><span id="noonly" style="color: red;"></span><br>
+      <label>DOB:
+        <input type="date" name="date" id="dates">
+      </label><br>
       <label>
         <fieldset>
-          <legend aria-label="required">Do you have liecense *</legend>
-          <input type="radio" name="like" value="yes" >Yes
-          <input type="radio" name="like" value="no">No
+          <legend aria-label="required" id="lie">Do you have liecense *</legend>
+          <input type="radio" name="liecense" value="yes" id="yess">Yes
+          <input type="radio" name="liecense" value="no">No
         </fieldset>
       </label>
       
@@ -66,9 +69,10 @@
       var cpass = document.forms['login']['password2'].value;
       var mail = document.forms['login']['email'].value;
       var phon = document.forms['login']['phone'].value;
-      var liece = document.forms['login']['like'].value;
+      var liece = document.forms['login']['liecense'].value;
       var cour = document.forms['login']['select'].value;
       var tarea = document.forms['login']['comment'].value;
+      var dob = document.forms['login']['date'].value;
 
       var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     
@@ -89,6 +93,7 @@
       }
 
       if(phon==""){
+        document.getElementById('phones').focus();
         alert("Type Phone no");
         return false;
       }
@@ -104,7 +109,14 @@
       }
 
       if(liece == ""){
+        document.getElementById('yess').focus();
         alert("Select Liecense");
+        return false;
+      }
+
+      if(dob == ""){
+        document.getElementById('dates').focus();
+        alert("DOB");
         return false;
       }
 
@@ -118,6 +130,7 @@
         document.getElementById('password2').focus();
         return false;
       }
+      
     }
     
   </script> 
