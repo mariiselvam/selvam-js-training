@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML TAG EVENTS</title>
+  <style>
+    div{
+      border: 1px solid black;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+  <!---- INPUT EVENTS ---->
+
+  <label>oninput
+    <input type="text" id="input" oninput="showinput()">
+    <p id="view"></p>
+  </label>
+  <label>onchange
+    <input type="text" id="change" onchange="inputchange()">
+  </label><br><br>
+  <label>onblur & focus
+    <input type="text" id="blur" value="Focus & Blur">
+  </label><br>
+  <label>oncontextmenu
+    <div oncontextmenu="contextmenu()">
+      <p>On COntext Menu Example</p>
+    </div>
+  </label>
+
+  <p class="border">oninvalid & reset</p>
+  <form onreset="alert('From is reset');">
+    <label>Name
+      <input type="text" name="name">
+    </label>
+    <label>Age
+      <input type="text" name="age" oninvalid="invalid()" required>
+    </label>
+    <input type="submit" value="submit">
+    <input type="reset" value="Reset">
+  </form><br><br>
+
+  <label>onsearch
+    <input type="search" id="searchs" onsearch="searches()">
+    <p id="output-search"></p>
+  </label>
+  
+  <label>onselect
+    <input type="text" id="select" name="selects" onselect="selectes()" value="Select some text in the fields.">
+    <p id="output-select"></p>
+
+  </label>
+
+  
+</div>
+
+ <script>
+
+  // Input Script 
+
+    var input = document.getElementById('blur');
+      input.onblur = blurs ;
+      input.onfocus = focuss ;
+
+    function blurs(event){
+      input.value = 'Focus lost ( Using Blur )';
+      event.target.style.background = 'pink';
+    }
+    function focuss(){
+      input.value = 'Focus on here';
+      event.target.style.background = '#34dbeb';
+      return false;
+    }
+
+    function showinput(){
+      var x = document.getElementById('input').value;
+      document.getElementById('view').innerHTML = "Typing text - " + " " + x ;
+      return false;
+    }
+
+    function inputchange(){
+      var t = document.getElementById('change');
+      t.value = t.value.toUpperCase(); 
+      alert("You Change The Value Is" + " " + t.value);
+      return false;
+    }
+
+    function contextmenu(){
+      alert("You are clicked teh div (Right)" );
+      return false;
+    }
+
+    function invalid(){
+      alert("Age is must");
+      return false;
+    }
+
+    function searches(){
+      var x = document.getElementById('searchs').value;
+      document.getElementById('output-search').innerHTML = "Search Value Is:" + " " + x;
+      return false;
+    }
+
+    function selectes(){
+      var x = document.getElementById('select');
+      const selected = event.target.value.substring(event.target.selectionStart,event.target.selectionEnd);
+      document.getElementById('output-select').innerHTML = selected;
+      return false;
+    }
+    
+</script> 
+</body>
+</html>
