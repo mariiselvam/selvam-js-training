@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Button</title>
+  <title>Button & Forms</title>
 </head>
 <body>
   <input type="text" id="input1" value="Open Curtain">
@@ -35,13 +35,12 @@
     </label><br>
     <label>Address
       <textarea type="text" name="address" onblur="alert('Text input loses focus!')"></textarea>
-    </label>
-    <select onchange="alert('You have changed the selection!');">
+    </label><br>
+    <select id="mob" onchange="changess();">
       <option>Select</option>
       <option>OnePlus</option>
       <option>Samsung</option>
     </select>
-    <p><strong>Note:</strong> Select any option in select box to see how it works.</p>
     <input type="submit" value="Submit">
     <p id="fp1"></p>
   </form>
@@ -61,12 +60,14 @@
     // Focus
     function highlightInput(elm){
       elm.style.background = "lightgreen";
-    }   
+    } 
+    
+    function changess(){
+      var x = document.getElementById('mob').value;
+      alert ('You have changed the' + "" + x);
+    }
   
-  
-  
-  
-  
+    
   // Button Script 
     function submitt(){
       alert("submit");
