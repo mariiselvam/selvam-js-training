@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button</title>
+</head>
+<body>
+  <input type="text" id="input1" value="Open Curtain">
+  <button onclick="changed()">Onchange</button>
+  <button onblur="firee()" id="fires">Onblur</button>
+  <button onclick="clicke()" id="fires">Onclick</button><br>
+  <p id="para1"></p>
+ 
+  <input type="text" id="input2">
+  <button onfocus="focuss()">Onfocus</button>
+  <p></p>
+
+  <input type="text" id="input3">
+  <button onsubmit="return submitt()">Onsubmit</button>
+  <p id="para2"></p>
+
+  
+  
+  
+  <!--- Form Events --->
+  <h1>Forms</h1>
+  <form name="frm1" onsubmit="return greeting()" >
+    <label>Name:
+      <input type="text" name="fname">
+    </label><br>
+    <label>Age:
+      <input type="text" name="age" onfocus="highlightInput(this)">
+    </label><br>
+    <label>Address
+      <textarea type="text" name="address" onblur="alert('Text input loses focus!')"></textarea>
+    </label>
+    <select onchange="alert('You have changed the selection!');">
+      <option>Select</option>
+      <option>OnePlus</option>
+      <option>Samsung</option>
+    </select>
+    <p><strong>Note:</strong> Select any option in select box to see how it works.</p>
+    <input type="submit" value="Submit">
+    <p id="fp1"></p>
+  </form>
+  
+
+
+
+  <script>
+
+    // from script
+
+    // Submit
+    function greeting(){
+      document.getElementById('fp1').innerHTML = 'submit';
+    }
+
+    // Focus
+    function highlightInput(elm){
+      elm.style.background = "lightgreen";
+    }   
+  
+  
+  
+  
+  
+  // Button Script 
+    function submitt(){
+      alert("submit");
+      var x = document.getElementById('input3').value;
+      document.getElementById('para2').innerHTML = "Submit value" + "" + x;
+      console.log(x);
+      return false;
+    }
+    
+    function focuss(){
+      document.getElementById('input2').focus();
+      return false;
+    }
+    
+    function firee(){
+      document.getElementById('fires').style.background = '#81D4FA';
+      return false;
+    }
+
+    function changed(){
+      document.getElementById('input1').value = 'click';
+      alert('clicked');
+      return false;
+    }
+
+    function clicke(){
+      document.getElementById('para1').innerHTML = 'Button is clickd';
+      return false;
+    }
+  </script>
+</body>
+</html>
