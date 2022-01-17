@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!--- Select Events --->
+  <p class="border"></p>
+  <p>oninput & onchange</p>
+  <select value="selectonce" id="drop" oninput="input()" onchange="change()" oninvalid="valides()" required>
+    <option value="0"> ----- Select one ----</option>
+    <option name="1">1</option>
+    <option name="2" id="no-change">2</option>
+    <option name="2">3</option>
+    <option name="2">4</option>
+  </select><br>
+  <button >reset</button>
+  <p id="output-oninput" ></p>
+
+  <p>onclick & onblur & onfocus</p>
+  <select multiple id="drop1" onclick="clicks()" onblur="blurselect()" onfocus="focusselect()" required>
+    <option value="1">focus 1</option>
+    <option value="2">focus 2</option>
+    <option value="3">focus 3</option>
+    <option value="4">focus 4</option>
+  </select>
+  <span id="info">Not focus</span>
+  <p class="border"></p>
+
+
+  <p>oncontextmenu</p>
+  <p id="output-onchange" ></p>
+  <select id='mySel' multiple>
+    <option value='value1-click' oncontextmenu="getValue(this);return false">Value1</option>
+    <option value='value2-click' oncontextmenu="getValue(this);return false">Value2</option>
+  </select>
+  <p id="status" ></p>
+
+
+  <form onreset="resets()">
+  <select>
+    <option value="10">---- select category -----</option>
+    <option value="11" oninvalid="invalid()" >General Info</option>
+    <option value="22">Booking</option>
+    <option value="33">Auditions</option>
+  </select>
+  <input type="reset" value="Reset">
+  <p class=""></p>
+</form>
+
+<!------- Onselect & Onsearch & Onrest are not using --------->
+    
+
+  
+<script>
+  // Select Script
+
+  function resets(){
+    if(event.target.value === '10'){
+      alert('select option is reset');
+
+    }
+    
+    return false;
+  }
+
+  function invalid(){
+    alert('Select one value');
+    return false;
+  }
+
+  
+  function input(){
+      var gt = document.getElementById('drop').value;
+      document.getElementById('output-oninput').innerHTML = gt;
+      return false;
+    }
+
+    function change(){
+      var y = document.getElementById('drop').value;
+      document.getElementById('no-change').innerHTML = 22;
+      return false;
+    }
+
+    function clicks(){
+      if(event.target.value === "4"){
+        alert("You select value4");
+      }
+      return false;
+    }
+    
+    function blurselect(){
+      event.target.style.background = '#34dbeb';
+      return false;
+    }
+
+    function focusselect(){
+     document.getElementById('info').innerHTML = 'values Are focus';
+    }
+
+  function getValue(t){
+    document.getElementById('status').innerHTML=t.value;    
+  }        
+
+    </script>  
+</body>
+</html>
