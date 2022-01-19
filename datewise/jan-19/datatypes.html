@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataTypes</title>
+</head>
+<body>
+  <form onsubmit="myfun()">
+    <input type="text" name="name" id="name"><br>
+    <input type="number" name="number" id="number"><br>
+    <input type="submit" value="submit">
+  </form>
+  
+  
+  
+</body>
+
+<script>
+    var a = 42;
+    console.log(typeof(a));
+    var aa = toString(a);
+    console.log('tostr -- ',typeof(aa))
+    var b = "welcome";
+    console.log(typeof(b));
+    var c = true;
+    console.log(typeof(c));
+    var d;
+    console.log(typeof(d));
+    var e = 10.25;
+    console.log("Decimal",typeof(e));
+    var f = 123e5;
+    console.log(f , typeof(f));
+    // Parse Int Ex (It returns first integer value of variable )
+    var f = 25.36;
+    console.log("ParseInt",parseInt(f),typeof(parseInt));
+    console.log("ParseFloat",parseFloat(f));
+
+    var g = Date();
+    console.log('Date is-'+ g, typeof(g));
+
+    var h = null;
+    console.log(h);
+
+
+ </script>
+</html>
