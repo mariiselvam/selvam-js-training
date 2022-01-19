@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Condition @ Loops</title>
+</head>
+<body>
+  <h2>for loop used (in) concept</h2>
+  <p id="for-in"></p>
+  <h2>for loop used (of) concept</h2>
+  <p id="for-of"></p>
+  <h3>if - else</h3>
+  <form onsubmit="testNum()">
+    <input type="text" id="input1" name="name">
+    <input type="submit" value="click">
+  </form>
+  <hr>
+  <h3>If - else if - else</h3>
+  <form onsubmit="bignum()">
+    <input type="text" id="input2" name="name">
+    <input type="text" id="input3" name="name">
+    <input type="text" id="input4" name="name">
+    <input type="submit" value="click">
+  </form>
+  <p></p>
+  <input type="text" id="input5" name="name">
+  <input type="submit" value="click" onclick="doowhile()">
+  <p id="do-out"></p>
+</body>
+<script>
+
+  // For Loop 
+  const fruits = ["Apple", "Banana", "Mango", "Orange", "Papaya"];
+
+  let fruit = "";  
+  for(var i in fruits) {  // used (in) the loop
+    fruit += fruits[i] + "<br>"; 
+  }
+  document.getElementById('for-in').innerHTML = fruit;
+
+  let frui = ""; 
+  for(var i of fruits){  // used (of) the loop
+    frui += fruits + "<br>";
+  }
+  document.getElementById('for-of').innerHTML = frui;
+
+  // If - Else
+  var age = 19;
+  var teen = (age>=18) ? "adult":"childern";
+  console.log(teen);
+
+  function testNum(a) {
+    var a = document.getElementById('input1').value;
+    let result;
+    if (a > 0) {
+      result = 'positive';
+      alert("Positive");
+    } else {
+      result = 'NOT positive';
+      alert("Negative");
+    }
+    return result;
+  }
+
+  function bignum() {
+    var a = document.getElementById('input2').value;
+    var b = document.getElementById('input3').value;
+    var c = document.getElementById('input4').value;
+    if (a > b && a > c) {
+        alert("a is big");
+    } else if(b > c) {
+      alert("b is biggest");
+    }else{
+      alert("c is big");
+    }
+    return false;
+  }
+
+  // Do - while 
+  function doowhile(){
+    var out ='';
+    var p = 1
+    var a = document.getElementById('input5').value;
+    do{
+      out += (a*p) + "<br>";
+    }while(p < 10)
+    document.getElementById('do-out').innerHTML = out;
+  }
+  
+
+
+
+  
+</script>
+</html>
