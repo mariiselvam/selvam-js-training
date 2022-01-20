@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objects & Array </title>
+</head>
+<body>
+  
+  <!-- objects -->
+  <h3>Objects</h3>
+  <h3>Using function inside the obj</h3>
+  <p id="p1"></p>
+  <p id="p2"></p>
+  <p id="p21"></p>
+  <p id="p3"></p>
+  <p id="p4"></p>
+  <p id="p5"></p>
+  <h2>Object Using Loop</h2>
+  <p id="p6"></p>
+  <h2>Object Using Constructor</h2>
+  <p id="p7"></p>
+
+  
+</body>
+<script>
+  var p1 = new Object();
+  p1.firstname = "john";
+  p1.lastname = "kennady";
+  Object.defineProperty(p1, "year", {value:"2008"});
+  p1.getfullname = function(){
+    return this.firstname + "" + this.lastname;
+  }
+  document.getElementById("p1").textContent = p1.getfullname().toUpperCase() +" --- "+ p1.year;
+
+  var p2 = new Object();
+  p2 = {
+    firstname:"jack" , 
+    lastname:"jill",
+  };
+  p2.age = 25;
+  Object.defineProperty(p2, "year", {value:"2008"});
+  Object.defineProperty(p2, "year", {enumerable:false});
+  document.getElementById('p2').textContent = Object.values(p2);
+  document.getElementById('p21').textContent = p2.year;
+ 
+  var p3 = p1;
+  console.log(p3);
+  document.getElementById('p3').textContent = p3["firstname"];
+  document.getElementById('p4').textContent = p3["lastname"];
+
+  p3.firstname = "changename-1";
+  p3.lastname = "changename-2";
+
+  document.getElementById('p5').textContent = p3.firstname;
+  // document.getElementById('p6').textContent = p3.lastname;
+
+  var x = "";
+  const myObj = {
+    name: "John",
+    age: 30,
+    cars: [
+      {name:"Ford", models:["Fiesta", "Focus", "Mustang"]},
+      {name:"BMW", models:["320", "X3", "X5"]},
+      {name:"Fiat", models:["500", "Panda"]}
+    ]
+  }
+
+  for (var i in myObj.cars){
+    x += "<h3>" + myObj.cars[i].name + "</h3>";
+    for (var j in myObj.cars[i].models){
+      x += myObj.cars[i].models[j] + "<br>";
+    }
+  }
+
+document.getElementById("p6").innerHTML = x;
+
+function Person(first, last, age) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+}
+const person1 = new Person("John", "Doe", 23);
+const person2 = new Person("Jack", "Rose", 35);
+
+document.getElementById("p7").innerHTML =
+"Person1 Age  " + person1.age + "<br>"+ "person2 Age" + person2.age; 
+</script>
+</html>
