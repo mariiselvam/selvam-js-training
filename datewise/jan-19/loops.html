@@ -25,9 +25,18 @@
     <input type="submit" value="click">
   </form>
   <p></p>
-  <input type="text" id="input5" name="name">
-  <input type="submit" value="click" onclick="doowhile()">
-  <p id="do-out"></p>
+
+  <h3>While loop</h3>
+  <p id="while-out"></p>
+  <h3>do-While loop</h3>
+  <p id="dowhile-out"></p>
+
+  <h3>switch-case loop</h3>
+  <form onsubmit="swit()">
+    <input type="number" name="sname" id="num-in">
+    <input type="submit" value="click">
+  </form>
+  
 </body>
 <script>
 
@@ -78,20 +87,48 @@
     return false;
   }
 
-  // Do - while 
-  function doowhile(){
-    var out ='';
-    var p = 1
-    var a = document.getElementById('input5').value;
-    do{
-      out += (a*p) + "<br>";
-    }while(p < 10)
-    document.getElementById('do-out').innerHTML = out;
+  // While loop 
+  // While loop is entry controll loop ( It will be execute condition is check )
+  var text = "";
+  var k = 0;  
+  while (k < 5) {
+    text += k + "<br>";
+    k++;
   }
+  document.getElementById("while-out").innerHTML = text;
   
+  // do-while
+  // do-while loop is exit controll loop ( It will be execute once and condition chenck next )
 
+  var resultt = "";
+  var m = 0;
+  var o = 2; 
+  do{
+    resultt += m*o + "<br>";
+    m++;
+  }
+  while (m < 5);  
+  document.getElementById('dowhile-out').innerHTML = resultt;
 
+  // Switch case
+  function swit(){
+    var w = document.getElementById('num-in').value;
+    //var w = 1;
+    switch (w) {
+      case 1: 
+        alert('case 1 is executed');
+        break;
+      case 2: 
+        alert('case 2 is executed');
+        break;
+      case 3: 
+        alert('case 3 is executed');
+        break;
+      default:
+        alert('default case is execute')
+    }
 
+  }
   
 </script>
 </html>
