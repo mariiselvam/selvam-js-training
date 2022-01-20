@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays</title>
+</head>
+<body>
+  <p id="p1"></p>
+  <p id="p2"></p>
+  <p id="p21"></p>
+  <p id="p3"></p>
+  <p id="p4"></p>
+  <p id="p5"></p>
+  <p id="p6"></p>
+  <p id="p7"></p>
+
+  
+</body>
+
+<script>
+  var fruit =["mango","apple"];
+  console.log(fruit.length);
+  fruit.push("orange","gova");
+  console.log("array",fruit);
+  console.log("is array",Array.isArray(fruit));
+  console.log("instanceof",fruit instanceof Array);
+  document.getElementById('p1').textContent = fruit.toString(); 
+
+  // Add value
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  console.log("push",fruits.push("Kiwi"));
+  console.log("Splice",fruits.splice(2,0,"Starberry","Jerry"));
+  console.log("Sort(ascending)",fruits.sort());
+  console.log("Sort(decending)",fruits.reverse());
+
+  // Remove value
+  console.log("slice", fruits.slice(2));
+
+  // Loop @ key 
+  var fruitt = ["Banana", "Orange", "Apple", "Mango"];
+  fruitt.forEach(function (item, index, array){
+    console.log("for each loop-----",item,index);
+  })
+  console.log("key & value ----- ",Object.keys(fruitt));
+
+  // Array To Stirng
+  var t =JSON.stringify(fruitt);
+  console.log("Json-stringify",t);
+
+  // String To Array
+  var s = JSON.parse(t);
+  console.log("Json-parse",s);
+
+ 
+  // Array concat
+  var arr_a = ["john","peter","geoht"];
+  var arr_b = ["lotus","jasmine","peter"];
+  var res = arr_a.concat(arr_b);
+  console.log("concat of array",res);
+  </script>
+</html>
