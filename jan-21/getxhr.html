@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XMLHTTPRequest</title>
+  <style>
+    table, tr, th, td{
+      border: 2px solid black;
+      border-collapse: collapse;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<table id="employees"></table>
+ 
+  
+<script>
+  console.log(window);
+  const url = 'https://gorest.co.in/public/v1/users';
+  let xhr = new XMLHttpRequest();
+  console.log("XHR",xhr);
+  xhr.open("GET", url);
+  xhr.send();
+
+  xhr.onreadystatechange = () =>{
+    if(xhr.readyState == 4){
+      if(xhr.status == 200){
+        const out = JSON.parse(xhr.response);
+        console.log(out);
+        showtitle(out);
+      }
+      else{
+        console.log("Error" , xhr.status);
+      }
+    }
+  }
+
+  function showtitle(output){
+    let tab = 
+        `<tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+        </tr>`;
+    console.log("output",output.data);
+
+    for(let i in output.data){ 
+      tab += `<tr> 
+      <td>${output.data[i].id} </td>
+      <td>${output.data[i].name}</td>
+      <td>${output.data[i].email}</td>
+      <td>${output.data[i].gender}</td>
+      </tr>`;
+    }
+    document.getElementById("employees").innerHTML = tab;
+  }
+
+</script>
+</body>
+</html>
