@@ -11,32 +11,23 @@
  
   
 <script>
-var xhrr = new XMLHttpRequest();
-xhrr.open("POST", "https://reqres.in/api/login");
-xhrr.setRequestHeader("Accept", "application/json");
-xhrr.setRequestHeader("Content-Type", "application/json");
-
-xhrr.onreadystatechange = function () {
-   if (xhrr.readyState === 4) {
-      console.log(xhrr.status);
-      console.log(xhrr.responseText);
-   }};
-
-var data = `{
-  "id": 78912,
-  "name": "Jason Sweet",
-  "year": 5001,
-  "color": "#98B2D1",
-  "pantone_value": "20-20"
-}`;
-
-xhrr.send(data);
-
 console.log(window);
   let xhr = new XMLHttpRequest();
   console.log("XHR",xhr);
-  xhr.open("GET",'https://jsonplaceholder.typicode.com/todos/1');
+  xhr.open("GET",'https://jsonplaceholder.typicode.com/todos/');
   xhr.send();
+
+  xhr.onload = () =>{
+    document.write('<pre>'+ xhr.response + '</pre>');
+    if(xhr.status == 200){
+      console.log(JSON.parse(xhr.response));
+    }
+  }
+
+  // Run for system cannot connect innternet
+  // xhr.onerror = () =>{
+  //   console.log(xhr);
+  // }
 
 </script>
 </body>
