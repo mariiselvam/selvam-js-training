@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Get</title>
+</head>
+<body>
+  
+
+<script>
+  const apiUrl = 'https://gorest.co.in/public/v1/users';
+
+const promise = fetch(apiUrl,{
+  method:"GET",
+});
+
+ // ********* To Use try() & catch() method ********
+
+async function getOut(){
+ try{
+  const resp = await fetch(apiUrl);
+  
+  if(resp.status !== 200) throw new Error ("Not visible")
+  if(resp.status === 200){
+    const out_data = await resp.json();
+    console.log(out_data);
+  }
+}
+ catch (err) {
+   console.log("try error is ::", err);
+
+ }
+   
+}
+getOut();
+
+
+
+
+// ********* To Use .then() & .catch() method ********
+// promise 
+//   .then((res) => {
+//     if(res.status == 200){
+//       return res.json();
+//     }
+//     else{
+//       // Throw used 
+//       throw new Error("Something Faild...");
+//       // to throw the error in catch field 
+//     }
+//   })
+//   .then((value) => {
+//     console.log(value);
+//     console.log(value.data[2]);
+//   })
+//   .catch((error) => {
+//     console.log("Catch error", error.message);
+//   })
+</script>
+</body>
+</html>
