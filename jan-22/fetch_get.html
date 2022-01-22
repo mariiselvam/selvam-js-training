@@ -19,24 +19,20 @@ const promise = fetch(apiUrl,{
  // ********* To Use try() & catch() method ********
 
 async function getOut(){
- try{
-  const resp = await fetch(apiUrl);
-  
-  if(resp.status !== 200) throw new Error ("Not visible")
-  if(resp.status === 200){
-    const out_data = await resp.json();
-    console.log(out_data);
+  try{
+    const resp = await fetch(apiUrl);
+    if(resp.status !== 200) throw new Error ("Not visible");
+    
+    if(resp.status === 200){
+      const out_data = await resp.json();
+      console.log(out_data);
+    }
+  }
+  catch (err) {
+    console.log("try error is ::", err);
   }
 }
- catch (err) {
-   console.log("try error is ::", err);
-
- }
-   
-}
 getOut();
-
-
 
 
 // ********* To Use .then() & .catch() method ********
@@ -58,6 +54,7 @@ getOut();
 //   .catch((error) => {
 //     console.log("Catch error", error.message);
 //   })
+
 </script>
 </body>
 </html>
