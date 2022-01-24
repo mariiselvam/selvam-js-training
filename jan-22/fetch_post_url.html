@@ -30,6 +30,9 @@
 
       fetch(url,{
         method: "POST",
+        headers:{
+          ContentType = "application/x-www-form-urlencoded",
+        },
         body: searchparam,
       })
       .then((response) =>{
