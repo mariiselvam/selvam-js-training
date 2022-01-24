@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6</title>
+</head>
+<body>
+ 
+
+
+<script>
+// <***** Let keyword *****>
+// The let declare block-scoped. This means they are only accessible within a particular block. For example,
+let name = 'Sara';
+{
+    let name = 'Peter';
+    console.log(name);
+    {
+      let name = "John";
+      let name1 = "Micheal";
+      console.log(name);
+      console.log(name1);
+    }
+}
+console.log(name); 
+
+// <***** Const keyword *****>
+// name declared with const value cannot be changed
+const namess = 'Sara';
+
+//  <***** JavaScript Arrow Function *****>
+// Used to create function expressions 
+const x = (x, y) => { return x * y };
+console.log("x",x(5, 2));
+
+// <***** Class *****>
+// Keyword class is used to create a class. The properties are assigned in a constructor function.
+class Person {
+  constructor(name1) {
+    this.name2 = name1;
+  }
+}
+const person1 = new Person('John Osmack');
+console.log(person1.name2);
+
+// <***** Default Parameter Values *****>
+// you can pass default values in the function parameters
+function sum(x, y = 5) {
+  console.log(x + y);
+}
+sum(5);
+sum(5, 15);
+
+// <***** JavaScript Template Literals $ *****>
+// The template literal has made it easier to include variables inside a string
+const first_name = "Jack";
+const last_name = "Sparrow";
+console.log(`Hello ${first_name} ${last_name}`);
+
+// <***** JavaScript Destructuring *****>
+// The template literal has made it easier to include variables inside a stringJavaScript Destructuring
+const person = {
+    name3: 'Micheale',
+    age: 25,
+    gender: 'Male'    
+}
+let { name3, age, gender } = person;
+console.log(`person ${name3} + ${age} + ${gender}`);
+
+// // <***** JavaScript Promises *****>
+// // Promises are used to handle asynchronous tasks. For example,
+const promise = new Promise (function (Resolve, Reject){
+  setTimeout(function() { Resolve ("Promise Run");}, 4000);
+})
+promise.then(function(value){
+  console.log(value);
+});
+
+// let countValue = new Promise(function (resolve, reject) {
+//    reject('Promise rejected'); 
+// });
+// countValue.then(
+//     function successValue(result) {
+//         console.log(result); 
+//     },
+//  ).catch(
+//     function errorValue(result) {
+//         console.log(result);
+//     }
+//  );
+
+// <***** JavaScript Rest Parameter and Spread Operator *****>
+// You can use the rest parameter to represent an indefinite number of arguments as an array.
+let arr1 = ['one', 'two'];
+let arr2 = [...arr1, 'three', 'four', 'five'];
+console.log(arr2);
+
+const arrValue = ['My', 'name', 'is', 'Jack','London'];
+
+console.log(arrValue);   // ["My", "name", "is", "Jack"]
+console.log(...arrValue); // My name is Jack
+
+
+// <***** Javascript map & get & set *****>
+// create a Map
+let map1 = new Map();
+// set & get
+map1.set('info', {name: 'Jack', age: 26});
+console.log(map1.get('info'));
+console.log('size', map1.size);
+
+// set & has()
+let map2 = new Map();
+map2.set('info1', {name: 'Rose', age: 25});
+console.log(map2.has('info1'));
+console.log('delete',map2.delete('info'));
+map2.clear();
+console.log('clear', map2);
+
+// WEAK MAPSSSSSSSSS
+// However, WeakMap can only contain objects as keys. 
+const weakMap = new WeakMap();
+console.log(weakMap); // WeakMap {} 
+
+let obj = {};
+weakMap.set(obj, 'hello');
+console.log("Weakmap",weakMap); 
+console.log("Value get weakmap ---",weakMap.get(obj));
+console.log("has of weakmap",weakMap.has(obj));
+console.log("delete weakmap", weakMap.delete(obj));
+console.log("After delete weakmap",weakMap);
+
+// <***** Swapping *****>
+let y = 4;
+let z = 7;
+[y, z] = [z, y];
+console.log("y is placed in 4 but swapping is :",y);
+console.log("z is placed in 7 but swapping is :",z);
+
+// <***** Inheritance & super keyword *****>
+// parent class
+class Persons { 
+  constructor(name) {
+    this.name = name;
+    this.occupation = "unemployed";
+  }
+  greet() {
+    console.log(`Hello ${this.name}.`);
+  }
+}
+// inheriting parent class
+class Student extends Persons {
+  constructor(name) {
+    // call the super class constructor and pass in the name parameter
+    super(name);
+    // Overriding an occupation property
+    this.occupation = 'Student';
+  }
+  // overriding Person's method
+  greet() {
+    console.log(`Hello student ${this.name}.`);
+    console.log('occupation: ' + this.occupation);
+  }
+}
+let p = new Student('Jack');
+p.greet();
+
+
+// <***** for...of with Arrays *****>
+const students = ['John', 'Sara', 'Jack'];
+const string = "code";
+for ( let element of students ) {
+  console.log("for...of with Array ---",element);
+}
+for ( let codes of string ) {
+  console.log("for...of with String ---",codes);
+}
+
+// <***** Symbol() *****>
+// For instance, if different coders want to add a person.id property to a person object belonging to a third-party code, they could mix each others values.
+const personid = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  eyeColor: "blue"
+};
+
+let id = Symbol('id');
+personid[id] = 140353;
+console.log(personid);
+
+// <***** Find & find index *****>
+const numbers = [4, 9, 16, 25, 29];
+let find = numbers.find(finds);
+let findindex = numbers.findIndex(findindexs)
+
+function finds(value, index, array) {
+  return value > 18;
+}
+console.log("find",find);
+function findindexs(value, index, array) {
+  return value > 18;
+}
+console.log("findindex",findindex);
+
+
+// <***** New Math Methods *****>
+//Returns Integer
+console.log("mathturnc",Math.trunc(4.9) + " " + Math.trunc(-4.9));
+// Returns if x is negative, null or positive:
+console.log("math sign",Math.sign(-4) + " " + Math.sign(0) + " " + Math.sign(4));
+// Returns cube root
+console.log("math cbrt",Math.cbrt(8) + " " + Math.cbrt(64) + " " + Math.cbrt(125));
+// Return log
+console.log("How many times multiple of (100  1000  10 ) ", Math.log10(100) + Math.log10(1000) + Math.log10(10));
+
+// <***** Numbers *****>
+
+console.log("Check integer ------ ", Number.isInteger(10) + " " + Number.isInteger(10.5));
+console.log("Safe Integer ------ ", Number.isSafeInteger(12345678901234567890) + " " + Number.isSafeInteger(10));
+console.log("Finite Check ------ ", isFinite(10/0) + " " + isFinite(10/1));
+console.log("NaN ------ ", isNaN("Hello") + " " + isNaN("10"));
+ 
+
+
+
+
+</script>
+  
+</body>
+</html>
