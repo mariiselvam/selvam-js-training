@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Bubbling & Hoisting</title>
+</head>
+<body>
+  <p>Hoisting</p>
+  <p>Hoisting only used in var keyword - Declare var in any place in the function</p>
+  <div id="p1"></div>
+  <p></p>
+  <div id="p2"></div>
+  <p></p>
+
+  <p>Event Bubbling</p>
+  <div id="parent">
+    <button>
+      <p>Parent</p>
+    </button>
+    <button id="child">
+      <p>Child</p>
+    </button>
+  </div>
+  
+  </button>
+
+
+
+<script>
+  
+  // Hoisting
+  // In JavaScript, a variable can be declared after it has been used.
+
+  // EX ----- 1
+
+  x = 5; // Assign 5 to x
+  val = document.getElementById("p1");
+  val.innerHTML = x;
+  var x; // Declare x
+
+  // EX ------ 2
+
+  var x = 10;
+  y = 15;
+  val = document.getElementById("p2");
+  val.innerHTML = x + " " + y;
+  var y; 
+
+catName("Tiger");
+function catName(name) {
+  console.log("My cat's name is " + name);
+}
+
+
+// Event Bubbling
+
+var x = document.getElementById('parent');
+x.addEventListener('click',function(){
+  alert("You click parent")
+}, false);
+
+document.getElementById('child').addEventListener('click', () =>{
+  alert("You click child");
+}, false);
+
+
+
+</script>
+</body>
+</html>
