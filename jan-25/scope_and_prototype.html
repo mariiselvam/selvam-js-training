@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scope & Prototype</title>
+
+  <style>
+    
+  </style>
+</head>
+<body>
+ 
+  
+
+
+
+<script>
+
+// ------------- JavaScript has 3 types of scope: --------------------
+// 1. Block scope
+// 2. Function scope
+// 3. Global scope
+// 4. Strict Mode ( Same as Global scope) 
+// Strict Mode --- In "Strict Mode", undeclared variables are not automatically global.
+
+// var keyword is run last declaration value 
+// var another name is function scope.
+var a = 1; 
+{
+  var a = 2;
+}
+var a = 3; // Runs first 
+console.log("var keyword : ",a);
+
+
+// let keyword is running first for global scope value.
+let b = 1; // runs first 
+{
+  let b = 2; // runs 2nd
+}
+console.log("Let keyword : ",b);
+
+// const keyword is running first for declare value. 
+// const keyword is declare one time of the scope &  cannot be declare another time with in the scope.
+const c = 1;
+{
+  const c = 2;
+}
+console.log("Const keyword : ",c);
+
+// Function Scope 
+function myFunction() {
+  var carName = "Volvo";  // Function Scope
+  console.log("Carname : " , carName);
+}
+myFunction();
+
+var xa;
+console.log("xa value : ",xa);
+xa = 100;
+
+
+
+// --------------------------- Prototype -----------------
+// The JavaScript prototype property allows you to add new properties to objects
+
+function emp (names,ages,citys){
+  this.name = names;
+  this.age = ages;
+  this.city = citys;
+}
+emp.prototype.salary = 1500;
+const per = new emp("Jack", 25, "USA");
+const per1 = new emp ("Sparrow", 30, "UK");
+console.log("per",per.salary);
+console.log("per1",per1.salary);
+
+// Some keywords are using in prototype
+const myObject = {
+  city: 'Kerala',
+  citys() {
+    console.log(`Greetings from ${this.city}`);
+  }
+}
+
+myObject.citys();
+// To check the city variable is present in the object 
+console.log("City variable are place in object : ",myObject.hasOwnProperty('city'));
+// To check the which type in the const value ( myObject )
+console.log(Object.getPrototypeOf(myObject));
+
+
+// List of prototypes in date
+const myDate = new Date();
+let object = myDate;
+console.log("myDate",object.getFullYear());
+
+do {  
+  object = Object.getPrototypeOf(object);
+  console.log(object);
+
+} while(object);
+
+
+
+// -------------- Shadow DOM --------------------
+
+var button1 = document.createElement("button");
+button1.innerHTML = "Click";
+button1.className = "buttonclick";
+button1.id = "btncli";
+document.querySelector('body').appendChild(button1);
+
+// Create one div and add the elements in the div ( Using attachShadow)
+const div = document.createElement('div');
+div.id = "div-id";
+const header = document.createElement('h1');
+header.innerHTML = 'Here lies some Shadow DOM';
+const btn = document.createElement("button");
+btn.innerHTML = "add";
+const shadowRoot = div.attachShadow({ mode: 'open'});
+shadowRoot.appendChild(header);
+shadowRoot.appendChild(btn);
+// ------ Another way to add div in html element -------------- 
+// shadowRoot.innerHTML = '<h2>Hello Shadow DOM</h2>';
+document.querySelector('body').appendChild(div);
+
+
+
+// Create new class
+class myawesomecomponent extends HTMLElement{
+  
+  constructor(){
+    super();    
+
+    const shadowRoott = this.attachShadow({mode: 'open'});
+    shadowRoott.innerHTML = 
+    `<style>h1 {color: red; }</style>
+    <h1>create div method in straight</h1>`;
+  }
+};
+customElements.define('fancy-tabs',myawesomecomponent);
+
+//Link add in head
+const linkElem = document.createElement('link');
+linkElem.setAttribute('rel', 'stylesheet');
+linkElem.setAttribute('href', '#');
+document.querySelector('head').appendChild(linkElem);
+
+// link add in end of the body
+var link = '<a class="wplauncher-link"> Example Link </a>';
+document.body.insertAdjacentHTML('beforeend',link);
+
+
+
+
+
+
+</script>
+  
+</body>
+</html>
