@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event(dot)target and this</title>
+</head>
+<style>
+  form {
+  background-color: green;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+div {
+  background-color: blue;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 100px;
+  height: 100px;
+}
+
+p {
+  background-color: red;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+}
+
+body {
+  line-height: 25px;
+  font-size: 16px;
+}
+
+</style>
+<body>
+<form id="form">FORM
+  <div id="div">DIV
+    <p>P</p>
+  </div>
+</form>
+
+
+
+</body>
+<script>
+
+  // Event.target - keyword is used to get the data in particular tag ( Ex: <p>,<div>,<input>,<button> )
+  // this - keyword is used to get the data in whole <div> tag elements ( Ex:<form>,<div> )
+    form.onclick = function (e) {
+      event.target.style.backgroundColor = "yellow";
+      setTimeout(() => {
+        console.log("Output of event.target & this ---->","event.target - " + e.target.tagName + ", this=" + this.tagName);
+        alert("target = " + e.target.tagName + ", this=" + this.tagName);
+        e.target.style.backgroundColor = ''
+      }, 0);
+    };
+  </script>
+</html>
