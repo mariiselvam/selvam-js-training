@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array[object]</title>
+</head>
+<body>
+  <form id="postform" method="post">
+    <input type="text" id="name" placeholder="name">
+    <input type="text" id="mess" placeholder="email">
+    <label><strong>Gender</strong>
+      <input type="radio" name="gender" id="mal" value="male" checked>Male   
+      <input type="radio" name="gender" id="femal" value="female">Female 
+    </label>
+    <label><strong>Status</strong>
+      <input type="radio" name="status" id="act" value="active" checked>Active   
+      <input type="radio" name="status" id="inact" value="inactive">Inactive
+    </label>
+    
+      
+    <input type="submit" value="add">
+  </form>
+
+  <script>
+
+    const url = "https://gorest.co.in/public/v1/users/";
+    var form = document.getElementById("postform");
+    
+    // < **** Using Post data in Form **** >
+    form.addEventListener("submit",(e) => {
+      e.preventDefault();
+      var name = document.getElementById("name").value;
+      var message = document.getElementById("mess").value;
+      if(document.getElementById('act').checked){
+        var statu = document.getElementById('act').value;
+      }
+      else{
+        var statu = document.getElementById('inact').value;
+      }
+      
+      if(document.getElementById("mal").checked){
+        var value = document.getElementById('mal').value;
+      }
+      else{
+        var value = document.getElementById('femal').value;
+      }
+      async function postdata(){
+        var arrobj = { 
+          name : name,
+          email : message,
+          gender: value,
+          status: statu,
+        };
+        console.log(arrobj);
+        const res = await fetch(url,{
+          method:"POST",
+          body: JSON.stringify(arrobj),
+          headers:{
+            'Access-Control-Allow-Origin': '*',
+            'Authorization':'Bearer 9499e207d449eee74a704b03281816bdbb5b7ac7bd392031d37f416d094a2ef8',
+            'Accept': 'application/json',
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+        var output = await res.json();
+        console.log(output);
+      }
+      postdata();
+    });
+    
+  </script>
+  
+</body>
+</html>
