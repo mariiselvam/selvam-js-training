@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MomentJs</title>
+  <script type = "text/JavaScript" src = " https://MomentJS.com/downloads/moment.js"></script>
+
+</head>
+<body>
+  <label><strong>Moment.add()</strong>
+    <p id="p1"></p>
+  </label>
+  <label><strong>Moment.subtract()</strong>
+    <p id="p2"></p>
+  </label>
+  <label><strong>moment.diff(days)</strong>  2022-01-10 to 2019-12-10
+    <p id="p3"></p>
+  </label>
+  
+  <!-- <p>YYYY-MM-DDTHH:mm</p>
+  <input type="datetime-local" />
+  <p>YYYY-MM-DDTHH:mm:ss</p>
+  <input type="datetime-local" step="1" />
+  <p>YYYY-MM-DDTHH:mm:ss.SSS</p>
+  <input type="datetime-local" step="0.001" />
+  <p>YYYY-MM-DD</p>
+  <input type="date" />
+  <p>HH:mm</p>
+  <input type="time" />
+  <p>HH:mm:ss</p>
+  <input type="time" step="1" />
+  <p>HH:mm:ss.SSS</p>
+  <input type="time" step="0.001" />
+  <p>YYYY-[W]WW</p>
+  <input type="week" />
+  <p>YYYY-MM</p>
+  <input type="month" /> -->
+
+
+
+
+  <script>
+
+    var a = moment();
+    console.log("Format : ",a.format());
+    console.log("utc : ",a.utc());
+    console.log(a.utc().format());
+    // console.log("to view time: ",a._d);
+    // console.log("to view other obj", a._locale._calendar);
+
+    // To change the date format
+    console.log(a.format("DD-MM-YYYY"));
+        
+    // <*** To pass the duration ***>
+    const myduration =  moment.duration(5, 'days');
+    console.log(myduration);
+
+    // <*** To pass the humanize ***>
+    // Display length of time with duration suffix.
+    console.log(moment.duration(1, "minutes").humanize(true));
+    console.log("Humanize in a day--- ",moment.duration(10, "day").humanize(true));
+    console.log("Humanize in a hours --- ",moment.duration(48, "hours").humanize());
+    console.log("Humanize in a week using negative value --- ",moment.duration(-16, 'week').humanize(true, {d: 7,w: 4}));
+
+    
+    // <*** Add & Substract in date ***>
+    // Used to Add & Less of ( month,date,year, ....) current date 
+    var add = a.add(7,'M');
+    document.getElementById('p1').innerHTML = add.format("dddd-Do-MMMM-YYYY");
+    var sub = a.subtract(5, 'days');
+    document.getElementById('p2').innerHTML = sub.format("dddd-Do-MMMM-YYYY");
+
+    // <*** Different of moment() ***>
+    // Used to Diff of one date to another date
+    const date1 = moment('2022-01-10');
+    const date2 = moment('2019-12-10');
+    console.log(`Different Milliseconds - ${date1.diff(date2)}`);
+    document.getElementById('p3').innerHTML = (`Different Days - ${date1.diff(date2, 'days')} day(s)`);
+    console.log(`Different Days - ${date1.diff(date2, 'months')} month(s)`);
+    console.log(`Different Days - ${date1.diff(date2, 'years')} year(s)`);
+        
+
+    // <*** Valid & Isvalid of moment() ***>
+    // Used to Valid of ( month,date,year, ....) It returns Boolean Value
+    console.log("YYYY-MM-DD",moment("2022-01-28", "YYYY-MM-DD").isValid());
+    console.log("YYYY-DD-MM",moment("28-01-2022" , "YYYY-DD-MM").isValid());
+    console.log("Pass string value",moment("no date provided", "YYYY-MM-DD").isValid());
+    // But "YYYY-MM-DD" this format return true because the year is 2020
+    console.log(moment("Passout year is 2020", "YY-MM-DD").isValid()); 
+
+
+    // <*** To pass the asHours ***>
+    // asHours used to view the placed(ex:27) fullhours in the window
+    console.log("Hours to hours --- ",moment.duration(27, "hours").asHours());
+    console.log("Day to hours --- ",moment.duration(27, "days").asHours());
+
+    // <*** To pass the isBefore ***>
+    // isBefore used to the two dates differents
+    console.log("isBefore Ex --- ",moment('2020-08-12').isBefore('2020-09-20'));
+    console.log("isBefore Ex --- ",moment('2020-10-12').isBefore('2020-09-20'));
+
+    // <*** To pass the isBetween ***>
+    // isBetween used to youplaced the one date ( 2020-08-18 ) and the date is placed in ( 2020-08-17 & 2020-08-25)
+    console.log("isBetween --- ",moment('2020-08-18').isBetween('2020-08-17', '2020-08-25'));
+    // //moment(undefined) evaluates as moment() and returns the current moment
+    console.log("isBetween using undefinded --- ",moment('2020-08-18').isBetween('2010-08-17', undefined));
+
+
+     // <*** To pass the isSame ***>
+    // isSame used to same of the year , month of any two dates)
+    console.log("isSame ex --- ",moment('2020-07-29').isSame('2020-09-11', 'year'));
+    console.log("isSame ex --- ",moment('2019-07-29').isSame('2012-09-11', 'year'));
+    
+    
+    // <*** From & To now keyword ***>
+    // Used to ago & in keyword is hide
+    timeago = moment([2020, 08, 9]).fromNow(true);
+    console.log(timeago);
+    timeago1 = moment([2020, 08, 9]).toNow(false);
+    console.log(timeago1);
+
+  </script>   
+</body>
+</html>
