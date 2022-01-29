@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promises And Observables</title>
+  
+</head>
+<body>
+  
+<script>
+
+  // Promises means collection of callbacks 
+  // Promises returns in resolve and reject
+
+  // It is used to find out if the asynchronous operation is successfully completed or not.
+  // 3 ways to result in promises 1.waiting - output (undefined) 2.fullfield - output (resut) 3.reject - output (error)
+const count = true;
+let countValue = new Promise(function (resolve, reject) {
+    if (count) {
+        resolve("There is a count value.");
+    } else {
+        reject("There is no count value");
+    }
+});
+console.log(countValue);
+
+console.log("Instanceof uesd : ",countValue instanceof Promise);
+console.log("Instanceof uesd : ",countValue instanceof Array);
+
+
+// Ex - 2
+let countValue1 = new Promise(function (resolve, reject) {
+  // var x = 0;
+  // if(x == 0){
+  //   resolve("Promise resolved");
+  // }
+  // else{
+  //   reject ("promise rej")
+  // }
+  resolve("Done1");
+  resolve("Done2");
+  
+  
+});
+countValue1
+  .then((result) => {
+    console.log(result);
+  })
+
+  .then((successValue2) => {
+    console.log("Execute 1 time")
+  }) 
+
+  .then(function successValue1() {
+    console.log("You can call multiple functions this way.");
+  })
+
+  .catch((err) => {
+    console.log("ErrorAccured")
+
+}); 
+
+</script>
+</body>
+</html>
