@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maps</title>
+  
+</head>
+<body>
+  
+<script>
+let arr = [
+  {id:1, first_name:"Ajith", last_name:"kumar"},
+  {id:2, first_name:"Durai", last_name:"singam"},
+  {id:1, first_name:"Surya", last_name:"bose"},
+];
+console.log(arr);
+
+var filt = arr.map(function(value){
+  let fullname = [value.first_name, value.last_name].join(" ");
+  let obj = {id:value.id , Fullname:fullname};
+  return obj;
+});
+console.log(filt)
+
+
+
+</script>
+</body>
+</html>
