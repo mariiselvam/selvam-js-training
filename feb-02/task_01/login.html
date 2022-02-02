@@ -61,10 +61,8 @@
     </div>
   </section>
 <script>
-  const url = 'https://reqres.in/api/users';
+  const url = 'https://reqres.in/api/login';
   const form = document.getElementById('postform');
-  var tok = localStorage.getItem("token");
-  console.log(tok);
   
   form.addEventListener("submit",(e) =>{
     e.preventDefault();
@@ -73,45 +71,38 @@
     var passwo = document.getElementById("pass").value;
     
     async function postdata(){
-      window.location.href = "view.html";
-      var values = {
-        email:e_mail,
-        password:passwo,
-      }
-      console.log(values);
-
       const result = await fetch(url,{
         method: "POST",
-        body:JSON.stringify(values),
+        body:JSON.stringify({
+          email:e_mail,
+          password:passwo
+        }),
         headers:{
             'Access-Control-Allow-Origin': '*',
             'Accept': 'application/json',
             // 'Authorization':localStorage.getItem('token'),
             'Content-type': 'application/json; charset=UTF-8',
           },
-      })
-      var out = await result.json();
-      console.log(out);
-      
+      });
+      if(result.status === 200){
+        var out = await result.json();
+        console.log(out);
+        window.location.href = 'users/dashboard.html';
+      }
     }
-    if(tok === "QpwL5tke4Pnpja7X4"){
-      postdata();
-    }
-    else{
-      alert("Token Not Assigned")
-    }
+    postdata();
   });
 
 
   
   // Get Users
-  fetch(url).then((response) => {
-    return response.json();
-  }).then((output) => {
-    console.log(output.data);
-  }).catch((error) => {
-    console.log("Error", error);
-  })
+  // fetch(url).then((response) => {
+  //   return response.json();
+  // }).then((output) => {
+  //   console.log(output.data);
+  // }).catch((error) => {
+  //   console.log("Error", error);
+  // })
 </script> 
 </body>
 </html>
