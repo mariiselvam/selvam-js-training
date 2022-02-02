@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practices</title>
+
+  <style>
+    #main_nav { 
+      position:absolute; 
+      right:30px; top:40px;
+      list-style-type: none;
+    } 
+    #main_nav li { 
+      float:left; 
+      margin-left:2px; 
+    } 
+    #main_nav li a{ 
+      font-size:16px; 
+      color:rgb(17, 3, 3); 
+      text-decoration:none; 
+      padding:8px 15px; 
+      border-radius:7px;
+    } 
+    #main_nav li a.active, #main_nav li a:hover{ 
+      background-color:#0b86cb; 
+    }
+
+  </style>
+</head>
+<body>
+<p><small>Copyright © 2014 W3C<sup>®</sup></small></p>
+  
+<img alt="HTML Best Practices" src="">
+<hr>
+
+<p>This book can read in 1&#xA0;hour.</p>
+<ruby>HTML<rp> (</rp><rt>えいちてぃーえむえる</rt><rp>) </rp></ruby><br>
+
+<kbd>Ctrl+F5</kbd><br>
+
+HTML <em>Best</em> Practices
+
+<ul id="main_nav">
+  <li><a href="#" class="active">Home</a></li>
+  <li><a href="#">About</a></li>
+  <li><a href="#">Portfolio</a></li>
+  <li><a href="#">Services</a></li>
+  <li><a href="#">Blog</a></li>
+  <li><a href="#">Contact Us</a></li>
+</ul>
+
+<fieldset>
+  <legend>Personal Details</legend>
+  <label for="name">name</label>
+  <input type="text" id="name" name="name" />
+  <label for="email">email</label>
+  <input type="text" id="email" name="email" />
+  <label for="subject">subject</label>
+  <input type="text" id="subject" name="subject" />
+  <label for="message" >message</label>
+  <textarea rows="10" cols="20" id="message" name="message" ></textarea>
+</fieldset>
+
+<div>
+  <h1>Div-1 Heading</h1>
+</div>
+<div>
+  <h1>Div-2 Heading</h1>
+</div>
+
+<p><strong>Code at your own pace</strong><p> <!--- Dont palce <p><i>data</i></p> --->
+<p><em>code at your own pace</em><p>
+
+  
+<input type="button" value="delete record" onclick="msg()"/> 
+<script>
+  function msg(){  
+var v= confirm("Are u sure?");  
+if(v==true){  
+alert("ok");  
+}  
+else{  
+alert("cancel");  
+}  
+  
+}  
+
+console.log(history.back());
+ 
+</script> 
+</body>
+</html>
