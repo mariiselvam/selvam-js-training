@@ -25,11 +25,18 @@ console.log(list);
 var list2: Array<string> = ["hai","1","2","3"];
 console.log(list2);
 
+const anys = [];
+anys.push(1);
+anys.push("Pass String");
+anys.push({ Laptop: "Dell" });
+console.log(anys);
+
 // TUBLE
 let sn:[string,number];
 sn = ["one",1];
 console.log(sn);
 
+// < ----------------- Interface ---------------->
 interface User {
   id: number;
   Name: string;
@@ -89,3 +96,70 @@ class Employees{
 let employe = new Employees(100, 'Ramesh', 'Fadatare');
 console.log(employe);
 console.log(employe.getfullna());
+
+// < ---------------- Union --------------------------- >
+// TypeScript allows us to use more than one data type for a variable or a function parameter. This is called union type.
+
+let code: (string | number);
+code = 123;   // OK
+code = "ABC"; // OK
+console.log("Union",code);
+
+let empId: string | number;
+empId = 111; // OK
+empId = "E111"; // OK
+
+// < ---------------- Enum --------------------------- >
+enum PrintMedia {
+  Newspaper = 1,
+  Newsletter = 5,
+  Magazine = Newsletter * 3,
+  Book = 10
+}
+enum Letter {
+  Newspaper = "News",
+  Book = "Book"
+}
+console.log(Letter.Book);
+console.log(PrintMedia);
+
+// < --------------- Array readonly ------------------ > Read only in array
+// let a1: ReadonlyArray<number> = [1, 2, 3]; ------- a1.push(102); // error
+// let b1: readonly number[] = [1, 2, 3]; --------- b1[0] = 101; // error
+
+// < ------------- Const --------------->Const value fixed the a.push value not assign in a[]
+let a = [1, 2, 3] as const;
+// a.push(102); // error
+// a[0] = 101; // error
+
+
+// < -------------- Inheritance --------------- >
+class first{
+  speak():void{
+    console.log("First Inheritance Run");
+  }
+}
+class second extends first{
+  learn(): void {
+      console.log("Second Inheritance Run")
+  }
+}
+class third extends second{
+  go():void{
+    console.log("Third Inheritance Run");
+  }
+}
+
+let obje = new third();
+obje.speak();
+obje.learn();
+obje.go();
+
+// < ------------- Method Overloading -------------->
+// to create multiple methods with the same name but different parameter types and return type. 
+function add(a:any, b:any):void {  
+  return a + b;  
+}  
+ 
+console.log("Addition: " + add("Hello ", "JavaTpoint"));  
+console.log("Addition: " + add(30, 20));  
