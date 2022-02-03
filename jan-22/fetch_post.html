@@ -9,32 +9,35 @@
 <body>
   <form id="postform" method="post">
     <input type="text" id="name" placeholder="name">
-    <input type="text" id="mess" placeholder="message">
-    <input type="number" id="numb" placeholder="id">
+    <input type="text" id="mess" placeholder="email">
+    <input type="text" id="numb" placeholder="gender">
     <input type="submit" value="add">
   </form>
 
   <script>
 
-    const url = 'https://jsonplaceholder.typicode.com/posts';
-    var form = document.getElementById('postform');
-
+    const url = "https://gorest.co.in/public/v1/users/";
+    var form = document.getElementById("postform");
+    
     // < **** Using Post data in Form **** >
-    form.addEventListener('submit',(e) => {
+    form.addEventListener("submit",(e) => {
       e.preventDefault();
-      var name = document.getElementById('name').value;
-      var message = document.getElementById('mess').value;
-      var value = document.getElementById('numb').value;
+      var name = document.getElementById("name").value;
+      var message = document.getElementById("mess").value;
+      var value = document.getElementById("numb").value;
+      
       
       async function postdata(){
+        var arrobj = {name : name,
+            email : message,
+            gender: value};
+            console.log(arrobj);
         const res = await fetch(url,{
           method:"POST",
-          body: JSON.stringify({
-            title : name,
-            body : message,
-            id: value
-          }),
+          body: arrobj,
           headers:{
+            'Access-Control-Allow-Origin': '*',
+            'Authorization':'Bearer 9499e207d449eee74a704b03281816bdbb5b7ac7bd392031d37f416d094a2ef8',
             'Accept': 'application/json',
             'Content-type': 'application/json; charset=UTF-8',
           },
@@ -42,6 +45,7 @@
         var output = await res.json();
         console.log(output);
       }
+      postdata();
   
     // < **** Using Post data in stright fetch **** >
     //   fetch(url,{
@@ -61,7 +65,7 @@
     //     console.log(data);
     //   })
     });
-     
+    
   </script>
   
 </body>
