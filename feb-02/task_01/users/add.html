@@ -13,11 +13,11 @@
   <form id="addform">
     <div class="mb-3 mt-3">
       <label for="text">Username:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+      <input type="text" class="form-control" id="name" placeholder="Add name" name="name">
     </div>
     <div class="mb-3">
       <label for="text">Job:</label>
-      <input type="text" class="form-control" id="job" placeholder="Enter Job" name="job">
+      <input type="text" class="form-control" id="job" placeholder="Add Job" name="job">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
@@ -51,7 +51,7 @@
       if(result.status === 201){
         var out = await result.json();
         console.log(out);
-        window.location.href = "dashboard.html";
+        window.location.href = "./dashboard.html";
       }
     }
     adddata();
