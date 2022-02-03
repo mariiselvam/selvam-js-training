@@ -14,7 +14,7 @@
   
   <div class="container">
     <button class="btn btn-success btn-lg float-end" type="submit" onclick="addbtn()"><i class="fa fa-plus" aria-hidden="true"></i>Add</button><br>
-    <table class="table table-hover">
+    <table class="table table-hover" id="data-table">
       <thead>
         <th>ID</th>
         <th>Fname</th>
@@ -40,6 +40,7 @@
       </ul>
     </nav>
   </div>
+  <button class="btn btn-success btn-lg float-center" type="submit" onclick="logout()">Logout</button><br>
 <script>
   const url = 'https://reqres.in/api/users?page=1';
   async function getdata(){
@@ -57,37 +58,47 @@
           trow += "<td>"+ tdata.last_name + "</td>";
           trow += "<td>"+ tdata.email + "</td>";
           trow += "<td>"+ tdata.avatar + "</td>";
-          trow += "<td><button onclick='editfun()''>Edit</button><button onclick='delfun()'>Delete</button></td></tr>";
+          trow += "<td><button onclick='editfun()'>Edit</button><button onclick='deleteRow(this)'>Delete</button></td></tr>";
         });
         document.getElementById("tab-body").innerHTML = trow;
      }
   }
   getdata();
   
-   
-    async function delfun(){
-      alert(confirm("You want to delete"));
-      const response = await fetch('https://reqres.in/api/users/2', {
+  function deleteRow(r){
+    alert(confirm("You want to delete"));
+    async function deletefun(){
+      const response = await fetch('https://reqres.in/api/users/', {
         method: "DELETE",
         headers:{
           'Content-type': 'application/json',
           "Access-Control-Allow-Origin": "*"
         },
       });
-      // if(response.status === 200){
-        const out = await response.text();
-        console.log(out);
-      // }
+      if(response.status === 204){
+        var x = r.parentNode.parentNode.rowIndex;
+        document.getElementById("data-table").deleteRow(x);
+        // const out = await response.text();
+        // console.log(out);
+      }
+      else{
+        alert("Can not delete");
+      }
     }
-      
-  
-function editfun(){
+    deletefun();
+  } 
+
+ function editfun(){
   window.location.href = "edit.html";
 }
 
 function addbtn(){
   window.location.href = "./add.html";
 }
+function logout(){
+  window.location.href = "../login.html";
+} 
+
  
 </script>  
 </body>
