@@ -49,11 +49,16 @@
             'Content-type': 'application/json; charset=UTF-8',
           },
       });
-      if(result.status === 200){
+      if(names === "" && jobs === ""){
+        alert("fill the details first");
+        return false;
+      }
+      else if(names !== "" && jobs !== "" && result.status === 200){
         var out = await result.json();
         console.log(out);
         window.location.href = "./dashboard.html";
       }
+      
     }
     editdata();
   }); 
