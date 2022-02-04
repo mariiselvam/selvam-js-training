@@ -25,7 +25,9 @@
   </div>
   
 <script>
-  const url = "https://reqres.in/api/users/2";
+  var to = localStorage.getItem("token2");
+  if(to !== null){
+    const url = "https://reqres.in/api/users/2";
   const form = document.getElementById('editform');
   form.addEventListener("submit",(e) =>{
     e.preventDefault();
@@ -54,6 +56,11 @@
     }
     editdata();
   }); 
+  }
+  else{
+    alert("Login first");
+  }
+  
 </script>  
 </body>
 </html>
