@@ -9,26 +9,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>  
 </head>
 <body>
-  <div class="container">
-  <form id="addform">
-    <div class="mb-3 mt-3">
-      <label for="text">Username:</label>
-      <input type="text" class="form-control" id="name" placeholder="Add name" name="name">
-    </div>
-    <div class="mb-3">
-      <label for="text">Job:</label>
-      <input type="text" class="form-control" id="job" placeholder="Add Job" name="job">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
-</div>
+  <div class="container mt-3">
+    <h2>Add form</h2>
+    <form id="addform">
+      <div class="mb-3 mt-3">
+        <label for="text">Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="email" required  >
+      </div>
+      <div class="mb-3">
+        <label for="text">Job:</label>
+        <input type="text" class="form-control" id="job" placeholder="Enter Job" name="pswd" required >
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  
   
 <script>
-  const url = "https://reqres.in/api/users";
-  const form = document.getElementById('addform');
   
- 
+  var to = localStorage.getItem("token2");
+  console.log(to);
+  if(to !== null)
+  {
+    const url = "https://reqres.in/api/users";
+    const form = document.getElementById('addform');
   form.addEventListener("submit",(e) =>{
     e.preventDefault();
     
@@ -48,7 +52,7 @@
             'Content-type': 'application/json; charset=UTF-8',
           },
       });
-      if(result.status === 201){
+      if(result.status == 201){
         var out = await result.json();
         console.log(out);
         window.location.href = "./dashboard.html";
@@ -56,6 +60,13 @@
     }
     adddata();
   }); 
+
+  }
+  else{
+    alert("You can not acces befor login !!!!")
+    window.location.href = "../login.html"
+  }
+  
 </script>  
 </body>
 </html>
