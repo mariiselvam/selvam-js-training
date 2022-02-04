@@ -9,67 +9,35 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>  
 </head>
 <body>
-  <section class="vh-100" style="background-color: #9A616D;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
-          <div class="card" style="border-radius: 1rem;">
-            <div class="row g-0">
-              <div class="col-md-6 col-lg-5 d-none d-md-block">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                  alt="login form"
-                  class="img-fluid" style="border-radius: 1rem 0 0 1rem;"
-                />
-              </div>
-              <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                <div class="card-body p-4 p-lg-5 text-black">
-                  <form id="postform">
-  
-                    <div class="d-flex align-items-center mb-3 pb-1">
-                      <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                      <span class="h1 fw-bold mb-0">Welcome!!!</span>
-                    </div>
-  
-                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-  
-                    <div class="form-outline mb-4">
-                      <input type="email" id="mail" class="form-control form-control-lg" />
-                      <label class="form-label" for="mail">Email address</label>
-                    </div>
-  
-                    <div class="form-outline mb-4">
-                      <input type="password" id="pass" class="form-control form-control-lg" />
-                      <label class="form-label" for="pass">Password</label>
-                    </div>
-  
-                    <div class="pt-1 mb-4">
-                      <input type="submit" class="btn btn-dark btn-lg btn-block" value="login" >
-                      <!-- <button class="btn btn-dark btn-lg btn-block" type="button">Login</button> -->
-                    </div>
-  
-                    <a class="small text-muted" href="#!">Forgot password?</a>
-                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="./register.html" style="color: #393f81;">Register here</a></p>
-                  </form>
-  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="container mt-3">
+    <h2>Login form</h2>
+    <form action="./users/dashboard.html" id="postform">
+      <div class="mb-3 mt-3">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="mail" placeholder="Enter email" name="email" required>
       </div>
-    </div>
-  </section>
+      <div class="mb-3">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+      </div>
+      <div class="form-check mb-3">
+        <label class="form-check-label">
+          <a href="./register.html">Register here</a> 
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 <script>
+  localStorage.clear();
   const url = 'https://reqres.in/api/login';
   const form = document.getElementById('postform');
-  
+  var to = localStorage.getItem('token2');
+  console.log(to);  
   form.addEventListener("submit",(e) =>{
     e.preventDefault();
-    
     var e_mail = document.getElementById("mail").value;
-    var passwo = document.getElementById("pass").value;
-    
+    var passwo = document.getElementById("pwd").value;
     async function postdata(){
       const result = await fetch(url,{
         method: "POST",
@@ -87,22 +55,23 @@
       if(result.status === 200){
         var out = await result.json();
         console.log(out);
-        window.location.href = './dashboard.html';
+        localStorage.setItem("token2",out.token)
+        window.location.href = './users/dashboard.html';
+      }
+      else{
+        alert("User not found")
       }
     }
+    
     postdata();
   });
-
-
-  
-  // Get Users
-  // fetch(url).then((response) => {
-  //   return response.json();
-  // }).then((output) => {
-  //   console.log(output.data);
-  // }).catch((error) => {
-  //   console.log("Error", error);
-  // })
+  // function preventBack() 
+  // { 
+  //   window.history.forward(); 
+  // }  
+  // setTimeout("preventBack()", 0);  
+  // window.onunload = function () { null }; 
+ 
 </script> 
 </body>
 </html>
