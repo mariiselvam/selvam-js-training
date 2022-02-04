@@ -14,11 +14,11 @@
     <form id="addform">
       <div class="mb-3 mt-3">
         <label for="text">Name:</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="email" required  >
+        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="email" required onkeydown="checkContents(this)">
       </div>
       <div class="mb-3">
         <label for="text">Job:</label>
-        <input type="text" class="form-control" id="job" placeholder="Enter Job" name="pswd" required >
+        <input type="text" class="form-control" id="job" placeholder="Enter Job" name="pswd" required onkeydown="checkContents(this)">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -65,6 +65,11 @@
   else{
     alert("You can not acces befor login !!!!")
     window.location.href = "../login.html"
+  }
+  var checkContents = function(input) {
+    var text = input.value;
+      if(!/[a-zA-Z]/.test(text))
+        input.value = ""; 
   }
   
 </script>  
