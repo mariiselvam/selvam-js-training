@@ -25,6 +25,7 @@
   </div>
   
 <script>
+  document.getElementById('name').value = localStorage.getItem("Name");
   var to = localStorage.getItem("token2");
   if(to !== null){
     const url = "https://reqres.in/api/users/2";
@@ -33,7 +34,7 @@
     e.preventDefault();
     
     var names = document.getElementById('name').value;
-    var jobs =document.getElementById('job').value;
+    var jobs = document.getElementById('job').value;
     
     async function editdata(){
       const result = await fetch(url,{
