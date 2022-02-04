@@ -99,7 +99,17 @@
   }
 
   function editfun(){
-    window.location.href="edit.html";
+    window.location.href = "edit.html";
+    var table = document.getElementById("data-table"),RIndex;
+    for(var i = 0; i<table.rows.length; i++){
+      table.rows[i].onclick = function () {
+        RIndex = this.rowIndex;
+        var fname = this.cells[1].innerHTML;
+        var lname = this.cells[2].innerHTML;
+        var result = fname.concat(lname);
+        localStorage.setItem("Name",result);
+      }
+    }
   }
 
   function addbtn(){
