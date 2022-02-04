@@ -9,27 +9,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>  
 </head>
 <body>
-  <div class="container">
-  <h2>Stacked form</h2>
-  <form id="editform">
-    <div class="mb-3 mt-3">
-      <label for="text">Username:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
-    </div>
-    <div class="mb-3">
-      <label for="pwd">Job:</label>
-      <input type="text" class="form-control" id="job" placeholder="Enter Job" name="job">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
-</div>
+  <div class="container mt-3">
+    <h2>Edit form</h2>
+    <form id="editform">
+      <div class="mb-3 mt-3">
+        <label for="text">Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="text">Job:</label>
+        <input type="text" class="form-control" id="job" placeholder="Enter Job" name="pswd" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
   
 <script>
   const url = "https://reqres.in/api/users/2";
   const form = document.getElementById('editform');
-  
- 
   form.addEventListener("submit",(e) =>{
     e.preventDefault();
     
@@ -49,16 +46,11 @@
             'Content-type': 'application/json; charset=UTF-8',
           },
       });
-      if(names === "" && jobs === ""){
-        alert("fill the details first");
-        return false;
-      }
-      else if(names !== "" && jobs !== "" && result.status === 200){
+      if(result.status === 200){
         var out = await result.json();
         console.log(out);
         window.location.href = "./dashboard.html";
       }
-      
     }
     editdata();
   }); 
