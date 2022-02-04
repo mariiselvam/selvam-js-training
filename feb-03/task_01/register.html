@@ -14,11 +14,11 @@
     <form id="regform">
       <div class="mb-3 mt-3">
         <label for="email">Email:</label>
-        <input type="email" class="form-control" id="mail" placeholder="Enter email" name="email" required>
+        <input type="email" class="form-control" id="mail" placeholder="Enter email" name="email" required onkeydown="checkContents(this)">
       </div>
       <div class="mb-3">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required >
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -61,6 +61,11 @@
   });
   // window.location.href =  window.history.back();
   
+  var checkContents = function(input) {
+    var text = input.value;
+      if(!/[a-zA-Z]/.test(text))
+      input.value = ""; 
+  }
 </script>
 </body>
 </html>
