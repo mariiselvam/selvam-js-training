@@ -96,7 +96,7 @@ var name1: string = "Rahul";   // string variable
 var isUpdated: boolean = true; // Boolean variable   
 
 // -------------- TypeScript Type Assertion ---------------- 
-let empCode: any = 111;  
-let empcode1 = <number> codes; 
-let employeeCode = code as number;   
-console.log(typeof(employeeCode)); //Output: number  
+// let empCode: any = 111;  
+// let empcode1 = <number> codes; 
+// let employeeCode = code as number;   
+// console.log(typeof(employeeCode)); //Output: number  
