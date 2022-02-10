@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RECALL</title>
+</head>
+<body>
+  <div class="container">
+    <p>Key events</p>
+    <input type="text" placeholder="keydown" onkeydown="keyDown()">
+    <input type="text" placeholder="keyup" onkeyup="keyUp()">
+    <input type="text" placeholder="keypress" onkeypress="keyPress()">
+  </div>
+
+
+
+<script>
+  //  ------- DOM - Document Object Model ---------
+  // 1. Document is HTML page
+  // 2. The Html Page has an object Ex: <body> , <div> ... etc
+  // 3. Use the DOM in access the HTML page into the JS file
+
+// ---------- events --------
+// keyevents 1.keyup 2.keydown 3.keypress
+// 1. keydown
+// The key is press down and the function continue running after keyup 
+function keyDown(){
+  console.log("keydown press");
+}
+function keyUp(){
+  console.log("keyup press");
+}
+function keyPress(){
+  console.log("keyPress press");
+}
+
+// ------- use strict ------
+// Use strict ketword is used to undeclared variables are not assgin in script ex x=20;
+x = 3;
+myFunction();
+function myFunction(){
+  "use strict";
+  y = 4; // x is present but y is not present because "use strict" keyword is using
+}
+
+</script>
+</body>
+
+</html>
