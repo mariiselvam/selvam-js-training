@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promises</title>
+</head>
+<body>
+  
+<script>
+  // ----- A Promise has four states: -----
+//fulfilled: Action related to the promise succeeded
+//rejected: Action related to the promise failed
+//pending: Promise is still pending i.e. not fulfilled or rejected yet
+//settled: Promise has fulfilled or rejected
+  var promise = new Promise(function(resolve, reject) {
+  const x = "welcome";
+  const y = "welcome";
+  if(x === y) {
+    resolve();
+  } else {
+    reject();
+  }
+});
+   
+promise
+    .then(function () {
+      console.log('Success, Welcome');
+    })
+    .catch(function () {
+      console.log('Some error has occurred');
+    });
+// Ex - 2
+function promisess() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('1. First thing setting up second thing');
+            resolve();
+        }, 1000)
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('2. Second thing setting up third thing');
+                resolve();
+            }, 1000)
+        })
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('3. Third thing setting up fourth thing');
+                resolve();
+            }, 1000)
+        })
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('4. Fourth thing setting up fifth thing');
+                resolve();
+            }, 1000)
+        })
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('5. Fifth thing');
+                resolve();
+            }, 1000)
+        })
+    })
+    .catch(error => {
+        console.log(`It's all a big mistake.`);
+    })
+    .finally(() => {
+        console.log('End');
+    })
+}
+promisess();    
+
+    // ------------ ES8 Async Await -------------
+    // Function used in immediate run the module 
+    function asyncawit() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve('resolved');
+        }, 2000);
+      });
+    }
+    async function asyncCall() {
+    console.log('calling');
+    const result = await asyncawit();
+    console.log(result);
+    // expected output: "resolved"
+  }
+asyncCall();
+
+// #Ex - 2 
+const makeup = async () => {
+  let response = await fetch('http://makeup-api.herokuapp.com/api/v1/products.json?brand=dior');
+  return await response.json();
+}
+
+makeup()
+    .then(data => console.log(data))
+    	.catch(err => console.log(err.message));
+
+// ----------- Job - Queue -------------
+// Push: Adds tasks to the queue to be processed.
+// Drain: The drain function is called after the last task of the queue.
+// Unshift: Adds tasks in front of the queue.
+// The function specified inside the .then() gets pushed inside the Job queue on task completion
+var promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('promise win')
+    }, 8000)
+})
+promise.then((result) => {
+    console.log(result)
+})
+setTimeout(() => {
+    console.log('setTimeout win')
+}, 9000);
+
+
+// ----------- promise Race ---------------
+// ------ Promise.all accepts an array of promises, and will attempt to fulfill all of them. Exits early if just 1 promise gets rejected.
+// ---- Promise.race also accepts an array of promises, but returns the first promise that is settled. A settled promise can either be resolved or rejected.
+//         async.race(tasks, callback)
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 500, 'one');
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 400, 'two');
+});
+
+Promise.race([promise1, promise2]).then((value) => {
+  console.log(value);
+  // Both resolve, but promise2 is faster
+});
+
+// ----------- Parallel ---------
+// When we have to run multiple tasks independent of each other without waiting until the previous task has completed.
+const resolveAfterTimeout = async i => {
+  return new Promise(resolve => {
+    console.log("CALLED");
+    setTimeout(() => {
+      resolve("RESOLVED", i);
+    }, 5000);
+  });
+};
+
+const call = async () => {
+  const res = await Promise.all([
+    resolveAfterTimeout(1),
+    resolveAfterTimeout(2),
+    resolveAfterTimeout(3),
+    resolveAfterTimeout(4),
+    resolveAfterTimeout(5),
+    resolveAfterTimeout(6)
+  ]);
+  console.log({ res });
+};
+
+call();
+
+// ---------- Sequence -------
+// A sequence is a set of instructions executed one after the other. A source code is a collection of instructions whose sequence is the order in which it has been written. The processor will then read it in order from beginning to end, executing the code as it goes.
+var a = 5;
+var b = 10;
+var c = 15;
+a = b;
+b = c;
+console.log(a,c);
+
+function myDisplayer(some) {
+  console.log(some);
+}
+
+function myFirst() {
+  myDisplayer("Hello");
+}
+
+function mySecond() {
+  myDisplayer("Goodbye");
+}
+
+myFirst();
+mySecond();
+
+// ----------- allSettleted ---------
+// It is a static function so run in Promise.allSettleded
+Promise.allSettled(
+  [
+  Promise.resolve(5),
+
+  new Promise((res,rej) => {
+    setTimeout(() => {
+      res(10);
+    },2000);
+  }),
+
+  Promise.reject(new Error ("Rejected")),
+
+  new Promise((res , rej) => {
+    setTimeout(() => {
+      res(15);
+    },4000);
+  }),
+
+  Promise.resolve(20),
+
+  ]
+).then((val) => {
+  console.log(val);
+
+});
+</script> 
+</body>
+</html>
