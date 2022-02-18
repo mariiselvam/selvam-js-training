@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex of Js</title>
+</head>
+<body>
+<script>
+// ------- Promises.any() ------------
+// The Promise.all() method returns a single promise that resolves when all the input promises have been resolved. The returned promise resolves to an array of the results of the input promises
+  const p1 = new Promise((res,rej) =>{
+    rej("Always Fail");
+  });
+  const p2 = new Promise((res,rej) => {
+    setTimeout(() => {
+      res("200");
+    }, 200);
+  });
+  const p3 = new Promise((res,rej) => {
+    setTimeout(() =>{
+      res("500");
+    },500);
+  });
+  (async () => {
+    const prom = [p1,p2,p3];
+    await Promise.any(prom).then((result) => {
+      console.log(result);
+    }).catch((err) => {
+      console.log(err);
+    }).finally(() => {
+      alert("Finaly Worked Default");
+    });
+  })();
+alert("Welcome");
+
+// ----------- Thread ------------
+// JavaScript is a single-threaded language, which means it has only one call stack that is used to execute the program.
+// It means that it runs only one thing at a time.
+// Asynchronous with multiple threads: Tasks get executed in different threads without waiting for other tasks to be completed and finish their executions independently.
+console.log("first")
+setTimeout(() => {
+    console.log("second")
+}, 1000)
+console.log("third");
+
+// -------------- Concurrency ------------
+// Concurrency refers to the parallel processing. It is the ability to execute more than one programs or more than one parts of the program in parallel without affecting the final outcome.
+// Note: Threads are the backbone of java concurrency.
+// Doing multiple task in a period of time
+var foobar = function() {
+ console.log("A");
+ console.log("B");
+ console.log("C");
+}
+foobar();
+
+// ------------- Paraellalism -----------------
+// Parallelism: more than one task is executed at the same time. That means that the tasks run on different processors or processor cores.
+function await3seconds () { 
+    return new Promise(function(res) {
+        setTimeout(() => res(), 3000)
+    })
+}
+
+console.time("Promise.all finished in::")
+
+Promise.all([await3seconds(), await3seconds(), await3seconds(), await3seconds(), await3seconds()])
+    .then(() => {
+        console.timeEnd("Promise.all finished in::")
+});
+await3seconds();
+</script>  
+</body>
+</html>
