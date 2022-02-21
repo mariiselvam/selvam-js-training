@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EX of JS</title>
+</head>
+<body>
+
+
+<script>
+// CallBack Functions
+// This function that is passed as an argument inside of another function is called a callback function.
+function greet(name, callback,callback2) {
+  console.log('Hi' + ' ' + name);
+  callback();
+  callback2();
+}
+function callMe() {
+  console.log('I am callback function');
+  setTimeout(() => { 
+    console.log("This message is shown after 3 seconds");
+}, 3000);
+}
+function callMe2() {
+  console.log('I am callback function2');
+}
+greet('Peter',callMe, callMe2);
+
+// Learn OOP vs FP in online 
+// ------- Functional Programming -----------
+// 1.Canbe named anything
+// 2.Any number of parameters can be passed
+// 3.Can return almost anything
+// 4. Functions onplay
+// 5. No side effectors
+// 6. Fixed control flow
+function sum(x,y){
+  return x+y;
+}
+console.log(sum(10,5));
+
+// #Ex - 2
+function square_sum(x,y){
+  sum = x + y;
+  square = sum^2;
+  return square;
+}
+console.log(square_sum(2,2));
+
+// --------------- Composition vs Inheritance -------------
+// Inheritance 
+// 1. Basic -- Inheritance is an "is-a" relationship
+// 2. Code Reuse -- In Inheritance, a class lass can extend only one interface, therefore, you can reuse your code only in one class only 
+// 3. Scope -- Inheritance provides its features at compile time
+// 4. Final -- We can’t reuse code from the final class 
+// 5. Methods -- It exposes both public and protected method of the parent class 
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+  present() {
+    return 'I have a ' + this.carname;
+  }
+}
+
+class Model extends Car {
+  constructor(brand, mod) {
+    super(brand);
+    this.model = mod;
+  }
+  show() {
+    return this.present() + ', it is a ' + this.model;
+  }
+}
+
+let myCar = new Model("Ford", "Mustang");
+console.log(myCar.show());
+
+// Composition 
+// The result of one function is passed on to the next function, which is passed to another until the final function is executed for the final result.
+// 1. Basic -- Composition is a "has-a". Relationship 
+// 2. Code Reuse -- We can reuse code in multiple class 
+// 3. Scope -- Composition is easily achieved at runtime 
+// 4. Final -- It allows code reuse even from final classes
+// 5. Methods -- It doesn’t expose. They interact using public interface.
+const eat = function () {
+    return {
+        eat: () => { console.log('I am eating'); }
+    }
+}
+const breathe = function () {
+    return {
+        breathe: () => { console.log('I am breathing'); }
+    }
+}
+const swim = function () {
+    return {
+        swim: () => { console.log('I am swimming'); }
+    }
+}
+const trick = function () {
+    return {
+        trick: () => { console.log('I am doing a trick'); }
+    }
+}
+const superMagician = ()=> {
+ return Object.assign(
+     {},
+     eat(),
+     breathe(),
+     trick()
+   );
+}
+
+</script>
+</body>
+</html>
