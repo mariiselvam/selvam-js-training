@@ -31,7 +31,6 @@ export class User {
     return this.courseList;
   }
 }
-
 const getFullname = (name, sname) =>{
   return name + ' ' + sname;
 };
