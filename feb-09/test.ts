@@ -40,7 +40,7 @@ let Messfees = studentCalc.Messfee(8000, 6);
 console.log("Output: " +TotalFee);  
 console.log("Output: " +Messfees);  
 
-// TypeScript Generics
+// --------------- TypeScript Generics ------------------
 //It creates a component that can work with a variety of data types rather than a single data type
 function identity<Type>(arg: Type): Type {
   return arg;
